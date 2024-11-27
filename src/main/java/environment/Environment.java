@@ -290,4 +290,7 @@ public class Environment {
     return null;
   }
 
+  public int getCol() {
+    return focusCol;
+  }
 }

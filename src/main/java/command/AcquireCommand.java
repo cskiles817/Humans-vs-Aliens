@@ -6,7 +6,7 @@ import weapon.Weapon;
 
 public class AcquireCommand implements Command {
 
-  private Environment environment;
+  private final Environment environment;
 
 
   public AcquireCommand(Environment env) {
@@ -26,10 +26,10 @@ public class AcquireCommand implements Command {
 
     Weapon[] weapons =  environment.getWeapons(lf.getRow(), lf.getCol());
 
-    for (int i = 0; i < weapons.length; i++) {
-      if (weapons[i] != null) {
-        lf.pickUpWeapon(weapons[i]);
-        environment.removeWeapon(weapons[i], lf.getRow(), lf.getCol());
+    for (Weapon weapon : weapons) {
+      if (weapon != null) {
+        lf.pickUpWeapon(weapon);
+        environment.removeWeapon(weapon, lf.getRow(), lf.getCol());
         break;
       }
     }

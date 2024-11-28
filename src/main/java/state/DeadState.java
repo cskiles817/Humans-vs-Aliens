@@ -4,15 +4,19 @@ import environment.Environment;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
+/**
+ * The lifeform is dead
+ */
 public class DeadState extends ActionState {
   private boolean hasLf;
   private int numWeapons;
   private int row;
   private int col;
 
-
-
-
+  /**
+   * Constructor
+   * @param context
+   */
   DeadState(AIContext context) {
     super(context);
   }
@@ -37,18 +41,29 @@ public class DeadState extends ActionState {
     e.addLifeForm(l, row, col);
   }
 
+  /**
+   * Check if the current cell can get another weapon
+   * if it cant, get a new cell until one is found
+   */
   private void checkNumWeapons() {
     while (numWeapons == 2) {
       getNewCell();
     }
   }
 
+  /**
+   * Check if the current cell can get a lifeform
+   * if it cant, get a new cell until one is found
+   */
   private void checkHasLifeForm() {
     while (hasLf) {
       getNewCell();
     }
   }
 
+  /**
+   * Get a new random cell, and set variables accordingly
+   */
   private void getNewCell() {
     Environment e = context.getEnvironment();
     Object[] newCell = e.getRandomCell();

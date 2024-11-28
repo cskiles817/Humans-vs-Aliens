@@ -2,7 +2,6 @@ package state;
 
 import command.AcquireCommand;
 import environment.Environment;
-import gameplay.EnvironmentObserver;
 import lifeform.LifeForm;
 
 /**

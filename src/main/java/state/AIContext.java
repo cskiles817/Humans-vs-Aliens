@@ -4,6 +4,9 @@ import environment.Environment;
 import gameplay.TimerObserver;
 import lifeform.LifeForm;
 
+/**
+ * Keep track of states
+ */
 public class AIContext implements TimerObserver {
 
   private LifeForm lf;
@@ -14,6 +17,11 @@ public class AIContext implements TimerObserver {
   private final NoWeaponState noWeaponState = new NoWeaponState(this);
   private final OutOfAmmoState outOfAmmoState = new OutOfAmmoState(this);
 
+  /**
+   * Constructor
+   * @param lf lifeform
+   * @param e  environment
+   */
   AIContext(LifeForm lf, Environment e) {
     this.lf = lf;
     this.e = e;
@@ -37,30 +45,58 @@ public class AIContext implements TimerObserver {
     currentState.executeAction();
   }
 
+  /**
+   * Get the current state
+   * @return currentState
+   */
   ActionState getCurrentState() {
     return currentState;
   }
 
+  /**
+   * Get the dead state
+   * @return deadState
+   */
   DeadState getDeadState() {
     return deadState;
   }
 
+  /**
+   * Get the environment
+   * @return e
+   */
   public Environment getEnvironment() {
     return e;
   }
 
+  /**
+   * Get has weapon state
+   * @return hasWeaponState
+   */
   public HasWeaponState getHasWeaponState() {
     return hasWeaponState;
   }
 
+  /**
+   * Get the lifeform
+   * @return lf
+   */
   public LifeForm getLifeForm() {
     return lf;
   }
 
+  /**
+   * Get no weapon state
+   * @return noWeaponState
+   */
   public NoWeaponState getNoWeaponState() {
     return noWeaponState;
   }
 
+  /**
+   * Get out of ammo state
+   * @return
+   */
   public OutOfAmmoState getOutOfAmmoState() {
     return outOfAmmoState;
   }
@@ -73,6 +109,9 @@ public class AIContext implements TimerObserver {
     currentState = state;
   }
 
+  /**
+   * Go to next round
+   */
   @Override
   public void updateTime(int time) {
 

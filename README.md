@@ -4,7 +4,7 @@
 #### Run GUI.java under src/main/java/GUI
 
 ### TODO
-- HasWeaponState
+- ~~HasWeaponState~~
 - DeadState
 - ~~NoWeaponState~~
 - OutOfAmmoState

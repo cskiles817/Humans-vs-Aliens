@@ -34,9 +34,8 @@ public class TestNoWeaponState {
     e.addLifeForm(l, 1, 1);
 
     AIContext context = new AIContext(l, e);
-    NoWeaponState nws = new NoWeaponState(context);
-    nws.executeAction();
-    assertEquals(context.getNoWeaponState(), context.getCurrentState());
+    context.execute();
+    assertEquals(context.HasWeaponState(), context.getCurrentState());
   }
 
   @Test
@@ -44,8 +43,7 @@ public class TestNoWeaponState {
     MockLifeForm l = new MockLifeForm("Mock", 1);
     e.addLifeForm(l, 1, 1);
     AIContext context = new AIContext(l, e);
-    NoWeaponState nws = new NoWeaponState(context);
-    nws.executeAction();
+    context.execute();
     assertEquals(context.getNoWeaponState(), context.getCurrentState());
   }
 
@@ -53,10 +51,9 @@ public class TestNoWeaponState {
   public void testIfDead() {
     MockLifeForm l = new MockLifeForm("Mock", 1);
     e.addLifeForm(l, 1, 1);
-    l.setCurrentLifePoints(0);
     AIContext context = new AIContext(l, e);
-    NoWeaponState nws = new NoWeaponState(context);
-    nws.executeAction();
+    l.setCurrentLifePoints(0);
+    context.execute();
     assertEquals(context.getDeadState(), context.getCurrentState());
   }
 

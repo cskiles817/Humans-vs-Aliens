@@ -1,11 +1,5 @@
-package Command;
+package command;
 
-import command.Invoker;
-import command.InvokerBuilder;
-import environment.Environment;
-import lifeform.Human;
-
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class TestInvokerBuilder {

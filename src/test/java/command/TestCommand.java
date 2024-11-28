@@ -1,4 +1,4 @@
-package Command;
+package command;
 
 import command.*;
 import environment.Environment;

@@ -8,25 +8,31 @@ public class AIContext implements TimerObserver {
 
   private LifeForm lf;
   private Environment e;
+  private ActionState currentState;
+  private final DeadState deadState = new DeadState(this);
+  private final HasWeaponState hasWeaponState = new HasWeaponState(this);
+  private final NoWeaponState noWeaponState = new NoWeaponState(this);
+  private final OutOfAmmoState outOfAmmoState = new OutOfAmmoState(this);
 
   AIContext(LifeForm lf, Environment e) {
     this.lf = lf;
     this.e = e;
+    currentState = noWeaponState;
   }
 
   /**
    * execute the current state's action
    */
   void execute() {
-
+    currentState.executeAction();
   }
 
   ActionState getCurrentState() {
-    return null;
+    return currentState;
   }
 
   DeadState getDeadState() {
-    return null;
+    return deadState;
   }
 
   public Environment getEnvironment() {
@@ -34,27 +40,27 @@ public class AIContext implements TimerObserver {
   }
 
   public HasWeaponState HasWeaponState() {
-    return null;
+    return hasWeaponState;
   }
 
   public LifeForm getLifeForm() {
-    return null;
+    return lf;
   }
 
   public NoWeaponState getNoWeaponState() {
-    return null;
+    return noWeaponState;
   }
 
   public OutOfAmmoState getOutOfAmmoState() {
-    return null;
+    return outOfAmmoState;
   }
 
   /**
    * Change this context's state
-   * @param state
+   * @param state the state to change to
    */
   public void setCurrentState(ActionState state) {
-
+    currentState = state;
   }
 
   @Override

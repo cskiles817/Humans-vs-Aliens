@@ -174,115 +174,117 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
      * descr.add(legendArray[6][1]);
      */
 
-    // an alien with no weapons, two weapons in the cell
-    temp = createEmptyCell();
-    temp = addFirstWeapon(temp, 1);
-    temp = addSecondWeapon(temp, 1);
-    LifeForm tempAlien = new Alien("Test Alien", 10);
-    temp = addAlien(temp, tempAlien);
-    legendArray[7][0] = new JLabel(temp);
-    icons.add(legendArray[7][0]);
-    legendArray[7][1] =
-            new JLabel("<html>Alien w/o weapon in cell with 2 weapons, facing north</html>");
-    legendArray[7][1].setPreferredSize(labelDim);
-    descr.add(legendArray[7][1]);
+//    // an alien with no weapons, two weapons in the cell
+//    temp = createEmptyCell();
+//    temp = addFirstWeapon(temp, 1);
+//    temp = addSecondWeapon(temp, 1);
+//    LifeForm tempAlien = new Alien("Test Alien", 10);
+//    temp = addAlien(temp, tempAlien);
+//    legendArray[7][0] = new JLabel(temp);
+//    icons.add(legendArray[7][0]);
+//    legendArray[7][1] =
+//            new JLabel("<html>Alien w/o weapon in cell with 2 weapons, facing north</html>");
+//    legendArray[7][1].setPreferredSize(labelDim);
+//    descr.add(legendArray[7][1]);
+//
+//    // an alien with one weapon w/o attachments, two weapons in the cell
+//    tempAlien = new Alien("Test Alien", 10);
+//    Pistol p = new Pistol();
+//    tempAlien.pickUpWeapon(p);
+//    temp = createEmptyCell();
+//    temp = addFirstWeapon(temp, 1);
+//    temp = addSecondWeapon(temp, 1);
+//    temp = addAlien(temp, tempAlien);
+//    legendArray[8][0] = new JLabel(temp);
+//    icons.add(legendArray[8][0]);
+//    legendArray[8][1] = new JLabel(
+//        "<html>Alien with 1 weapon (no attachments) in cell with 2 weapons, facing north</html>");
+//    legendArray[8][1].setPreferredSize(labelDim);
+//    descr.add(legendArray[8][1]);
+//
+//    // an alien with one weapon w/o attachments, then remove alien's weapon, two
+//    // weapons in the cell
+//    /*
+//     * tested & works, removed for layout clarity tempAlien = new
+//     * Alien("Test Alien", 10); p = new Pistol(); tempAlien.pickUpWeapon(p); temp =
+//     * createEmptyCell(); temp = addFirstWeapon(temp, 1); temp =
+//     * addSecondWeapon(temp, 1); temp = addAlien(temp, tempAlien); temp =
+//     * removeLifeFormWeapon(temp); legendArray[9][0] = new JLabel(temp);
+//     * icons.add(legendArray[9][0]); legendArray[9][1] = new
+//     * JLabel("<html>Alien with no weapon in cell with 2 weapons</html>");
+//     * descr.add(legendArray[9][1]);
+//     */
+//
+//    // a human (facing north) with one weapon w/o attachments, two weapons in the
+//    // cell
+//    Human tempHuman = new Human("Test Human", 10, 4);
+//    tempHuman.setDirection("South");
+//    p = new Pistol();
+//    tempHuman.pickUpWeapon(p);
+//    temp = createEmptyCell();
+//    temp = addFirstWeapon(temp, 0);
+//    temp = addSecondWeapon(temp, 2);
+//    temp = addHuman(temp, tempHuman);
+//    legendArray[10][0] = new JLabel(temp);
+//    icons.add(legendArray[10][0]);
+//    legendArray[10][1] = new JLabel(
+//        "<html>Human with 1 weapon (no attachments) in cell with 2 weapons, facing south</html>");
+//    legendArray[10][1].setPreferredSize(labelDim);
+//    descr.add(legendArray[10][1]);
+//
+//    // a human with one weapon w/o attachments, then remove Human, two weapons in
+//    // the cell
+//    /*
+//     * tested & works, removed for layout clarity tempHuman = new
+//     * Human("Test Human", 10, 4); p = new Pistol(); tempHuman.pickUpWeapon(p); temp
+//     * = createEmptyCell(); temp = addFirstWeapon(temp, 0); temp =
+//     * addSecondWeapon(temp, 2); temp = addHuman(temp, tempHuman); temp =
+//     * removeHuman(temp, tempHuman); legendArray[11][0] = new JLabel(temp);
+//     * icons.add(legendArray[11][0]); legendArray[11][1] = new
+//     * JLabel("<html>Human with 1 weapon (no attachments), removed, in cell with 2 weapons</html>"
+//     * ); descr.add(legendArray[11][1]);
+//     *
+//     * //a human (facing South) with one weapon w/o attachments, two weapons in the
+//     * cell tempHuman = new Human("Test Human", 10, 4);
+//     * tempHuman.setDirection("South"); tempHuman.takeHit(10); p = new Pistol();
+//     * tempHuman.pickUpWeapon(p); temp = createEmptyCell(); temp = addHuman(temp,
+//     * tempHuman); legendArray[12][0] = new JLabel(temp);
+//     * icons.add(legendArray[12][0]); legendArray[12][1] = new
+//     * JLabel("<html>Human with 1 weapon (no attachments), facing south</html>");
+//     * descr.add(legendArray[12][1]);
+//     */
+//
+//    // a human (facing East) with one weapon w/o attachments, two weapons in the
+//    // cell
+//    tempHuman = new Human("Test Human", 10, 4);
+//    tempHuman.setDirection("East");
+//    p = new Pistol();
+//    tempHuman.pickUpWeapon(p);
+//    temp = createEmptyCell();
+//    temp = addHuman(temp, tempHuman);
+//    legendArray[13][0] = new JLabel(temp);
+//    icons.add(legendArray[13][0]);
+//    legendArray[13][1] =
+//            new JLabel("<html>Human with 1 weapon (no attachments), facing east</html>");
+//    legendArray[13][1].setPreferredSize(labelDim);
+//    descr.add(legendArray[13][1]);
+//
+//    // a human (facing West) with one weapon w/o attachments, two weapons in the
+//    // cell
+//    tempHuman = new Human("Test Human", 10, 4);
+//    tempHuman.setDirection("West");
+//    p = new Pistol();
+//    tempHuman.pickUpWeapon(p);
+//    temp = createEmptyCell();
+//    temp = addHuman(temp, tempHuman);
+//    legendArray[14][0] = new JLabel(temp);
+//    icons.add(legendArray[14][0]);
+//    legendArray[14][1] =
+//            new JLabel("<html>Human with 1 weapon (no attachments), facing west</html>");
+//    legendArray[14][1].setPreferredSize(labelDim);
+//    descr.add(legendArray[14][1]);
 
-    // an alien with one weapon w/o attachments, two weapons in the cell
-    tempAlien = new Alien("Test Alien", 10);
-    Pistol p = new Pistol();
-    tempAlien.pickUpWeapon(p);
-    temp = createEmptyCell();
-    temp = addFirstWeapon(temp, 1);
-    temp = addSecondWeapon(temp, 1);
-    temp = addAlien(temp, tempAlien);
-    legendArray[8][0] = new JLabel(temp);
-    icons.add(legendArray[8][0]);
-    legendArray[8][1] = new JLabel(
-        "<html>Alien with 1 weapon (no attachments) in cell with 2 weapons, facing north</html>");
-    legendArray[8][1].setPreferredSize(labelDim);
-    descr.add(legendArray[8][1]);
-
-    // an alien with one weapon w/o attachments, then remove alien's weapon, two
-    // weapons in the cell
-    /*
-     * tested & works, removed for layout clarity tempAlien = new
-     * Alien("Test Alien", 10); p = new Pistol(); tempAlien.pickUpWeapon(p); temp =
-     * createEmptyCell(); temp = addFirstWeapon(temp, 1); temp =
-     * addSecondWeapon(temp, 1); temp = addAlien(temp, tempAlien); temp =
-     * removeLifeFormWeapon(temp); legendArray[9][0] = new JLabel(temp);
-     * icons.add(legendArray[9][0]); legendArray[9][1] = new
-     * JLabel("<html>Alien with no weapon in cell with 2 weapons</html>");
-     * descr.add(legendArray[9][1]);
-     */
-
-    // a human (facing north) with one weapon w/o attachments, two weapons in the
-    // cell
-    Human tempHuman = new Human("Test Human", 10, 4);
-    tempHuman.setDirection("South");
-    p = new Pistol();
-    tempHuman.pickUpWeapon(p);
-    temp = createEmptyCell();
-    temp = addFirstWeapon(temp, 0);
-    temp = addSecondWeapon(temp, 2);
-    temp = addHuman(temp, tempHuman);
-    legendArray[10][0] = new JLabel(temp);
-    icons.add(legendArray[10][0]);
-    legendArray[10][1] = new JLabel(
-        "<html>Human with 1 weapon (no attachments) in cell with 2 weapons, facing south</html>");
-    legendArray[10][1].setPreferredSize(labelDim);
-    descr.add(legendArray[10][1]);
-
-    // a human with one weapon w/o attachments, then remove Human, two weapons in
-    // the cell
-    /*
-     * tested & works, removed for layout clarity tempHuman = new
-     * Human("Test Human", 10, 4); p = new Pistol(); tempHuman.pickUpWeapon(p); temp
-     * = createEmptyCell(); temp = addFirstWeapon(temp, 0); temp =
-     * addSecondWeapon(temp, 2); temp = addHuman(temp, tempHuman); temp =
-     * removeHuman(temp, tempHuman); legendArray[11][0] = new JLabel(temp);
-     * icons.add(legendArray[11][0]); legendArray[11][1] = new
-     * JLabel("<html>Human with 1 weapon (no attachments), removed, in cell with 2 weapons</html>"
-     * ); descr.add(legendArray[11][1]);
-     *
-     * //a human (facing South) with one weapon w/o attachments, two weapons in the
-     * cell tempHuman = new Human("Test Human", 10, 4);
-     * tempHuman.setDirection("South"); tempHuman.takeHit(10); p = new Pistol();
-     * tempHuman.pickUpWeapon(p); temp = createEmptyCell(); temp = addHuman(temp,
-     * tempHuman); legendArray[12][0] = new JLabel(temp);
-     * icons.add(legendArray[12][0]); legendArray[12][1] = new
-     * JLabel("<html>Human with 1 weapon (no attachments), facing south</html>");
-     * descr.add(legendArray[12][1]);
-     */
-
-    // a human (facing East) with one weapon w/o attachments, two weapons in the
-    // cell
-    tempHuman = new Human("Test Human", 10, 4);
-    tempHuman.setDirection("East");
-    p = new Pistol();
-    tempHuman.pickUpWeapon(p);
-    temp = createEmptyCell();
-    temp = addHuman(temp, tempHuman);
-    legendArray[13][0] = new JLabel(temp);
-    icons.add(legendArray[13][0]);
-    legendArray[13][1] =
-            new JLabel("<html>Human with 1 weapon (no attachments), facing east</html>");
-    legendArray[13][1].setPreferredSize(labelDim);
-    descr.add(legendArray[13][1]);
-
-    // a human (facing West) with one weapon w/o attachments, two weapons in the
-    // cell
-    tempHuman = new Human("Test Human", 10, 4);
-    tempHuman.setDirection("West");
-    p = new Pistol();
-    tempHuman.pickUpWeapon(p);
-    temp = createEmptyCell();
-    temp = addHuman(temp, tempHuman);
-    legendArray[14][0] = new JLabel(temp);
-    icons.add(legendArray[14][0]);
-    legendArray[14][1] =
-            new JLabel("<html>Human with 1 weapon (no attachments), facing west</html>");
-    legendArray[14][1].setPreferredSize(labelDim);
-    descr.add(legendArray[14][1]);
+    initializeEnvironment();
 
     legend.add(icons, BorderLayout.LINE_START);
     legend.add(descr, BorderLayout.CENTER);

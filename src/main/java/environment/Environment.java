@@ -115,6 +115,13 @@ public class Environment {
     return new Weapon[]{cells[row][col].getWeapon1(), cells[row][col].getWeapon2()};
   }
 
+  public boolean hasWeapon() {
+    Weapon w1, w2;
+    w1 = getWeapons(focusRow, focusCol)[0];
+    w2 = getWeapons(focusRow, focusCol)[1];
+    return w1 != null || w2 != null;
+  }
+
   public void removeWeapon(Weapon weapon, int row, int col) {
     cells[row][col].removeWeapon(weapon);
   }
@@ -205,9 +212,20 @@ public class Environment {
     int targetCol = entity.getCol();
     int speed = entity.getMaxSpeed();
 
+    if (cells[targetRow][targetCol].isOccupied()) {
+      System.out.println(
+              "Target cell is occupied by another LifeForm.");
+      speed--;
+    }
+
     switch (entity.getDirection()) {
       case "North":
         targetRow -= speed;
+        for (int i = 0; i < entity.getMaxSpeed(); i++) {
+          if (cells[targetRow][targetCol].isOccupied()) {
+            targetRow -= speed;
+          }
+        }
         break;
       case "South":
         targetRow += speed;
@@ -225,12 +243,6 @@ public class Environment {
 
     if (targetRow < 0 || targetCol < 0 || targetRow >= getNumRows() || targetCol >= getNumCols()) {
       System.out.println("Movement goes out of bounds.");
-      return false;
-    }
-
-    if (cells[targetRow][targetCol].isOccupied()) {
-      System.out.println(
-              "Target cell is occupied by another LifeForm.");
       return false;
     }
 

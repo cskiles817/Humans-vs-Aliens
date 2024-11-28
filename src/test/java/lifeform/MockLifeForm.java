@@ -10,4 +10,7 @@ public class MockLifeForm extends LifeForm {
     super(name, points, attackDmg);
   }
 
+  public void setCurrentLifePoints(int lp) {
+    currentLifePoints = lp;
+  }
 }

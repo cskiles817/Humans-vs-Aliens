@@ -1,5 +1,7 @@
 package state;
 
+import lifeform.LifeForm;
+
 /**
  * Lifeform does not have any ammo
  */
@@ -22,6 +24,7 @@ public class OutOfAmmoState extends ActionState {
    */
   @Override
   public void executeAction() {
+    LifeForm l = context.getLifeForm();
     if (l.getCurrentLifePoints() > 0) {
       reload();
     } else {

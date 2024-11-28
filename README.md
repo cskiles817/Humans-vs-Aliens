@@ -7,11 +7,11 @@
 - ~~HasWeaponState~~
 - ~~DeadState~~
 - ~~NoWeaponState~~
-- OutOfAmmoState
+- ~~OutOfAmmoState~~
 - Updates to LifeForm (Code activity #1)
 - Expanded Figure 2 UML (Code activity #2)
   - Push to 'designs' folder
-- AIContext
+- ~~AIContext~~
 - Simulator (Code Activity #3)
 - Checkstyle
 

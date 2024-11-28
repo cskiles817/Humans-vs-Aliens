@@ -1,11 +1,15 @@
 package state;
 
 import command.AcquireCommand;
+import environment.Environment;
+import gameplay.EnvironmentObserver;
+import lifeform.LifeForm;
 
 /**
  * LifeForm does not have a weapon
  */
 public class NoWeaponState extends ActionState {
+
 
   /**
    * Constructor
@@ -15,7 +19,6 @@ public class NoWeaponState extends ActionState {
     super(context);
   }
 
-
   /**
    * Check if I'm dead first.
    * If weapon in cell call acquireWeapon method.
@@ -23,11 +26,13 @@ public class NoWeaponState extends ActionState {
    */
   @Override
   public void executeAction() {
+    LifeForm l = context.getLifeForm();
+    Environment e = context.getEnvironment();
     if (l == null) {
       return;
     }
     if (l.getCurrentLifePoints() > 0) {
-      if (e.hasWeapon()) {
+      if (e.hasWeapon(l.getRow(), l.getCol())) {
         acquireWeapon();
       } else {
         search();
@@ -41,9 +46,10 @@ public class NoWeaponState extends ActionState {
    * Pickup weapon and change to Has Weapon state
    */
   private void acquireWeapon() {
+    context.setCurrentState(context.HasWeaponState());
+    Environment e = context.getEnvironment();
     AcquireCommand a = new AcquireCommand(e);
     a.execute();
-    context.setCurrentState(context.HasWeaponState());
   }
 
   /**
@@ -57,9 +63,11 @@ public class NoWeaponState extends ActionState {
    * Turn random direction and move to new Cell
    */
   private void search() {
-   l.setRandomDirection();
-   if (!e.moveLifeForm(l)) {
-     search();
-   }
+    LifeForm l = context.getLifeForm();
+    Environment e = context.getEnvironment();
+    l.setRandomDirection();
+    if (!e.moveLifeForm(l)) {
+      search();
+    }
   }
 }

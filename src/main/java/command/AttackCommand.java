@@ -21,6 +21,10 @@ public class AttackCommand implements Command {
 
     LifeForm targetLf = environment.getTargetedByLifeForm(lf);
 
+    if (targetLf.getClass().equals(lf.getClass())) {
+      return;
+    }
+
     try {
       lf.attack(targetLf, (int)environment.getDistance(lf, targetLf));
     } catch (Exception ex) {

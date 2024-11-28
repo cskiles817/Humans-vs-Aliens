@@ -11,4 +11,8 @@ public class MockWeapon extends GenericWeapon {
     shotsLeft = rateOfFire;
   }
 
+  public void setCurrentAmmo(int ammo) {
+    currentAmmo = ammo;
+  }
+
 }

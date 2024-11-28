@@ -35,7 +35,7 @@ public class TestNoWeaponState {
 
     AIContext context = new AIContext(l, e);
     context.execute();
-    assertEquals(context.HasWeaponState(), context.getCurrentState());
+    assertEquals(context.getHasWeaponState(), context.getCurrentState());
   }
 
   @Test

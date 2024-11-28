@@ -17,7 +17,17 @@ public class AIContext implements TimerObserver {
   AIContext(LifeForm lf, Environment e) {
     this.lf = lf;
     this.e = e;
-    currentState = noWeaponState;
+    if (lf.getCurrentLifePoints() == 0) {
+      currentState = deadState;
+    } else if (!lf.hasWeapon()){
+      currentState = noWeaponState;
+    } else {
+      if (lf.getWeapon().getCurrentAmmo() == 0) {
+        currentState = outOfAmmoState;
+      } else {
+        currentState = hasWeaponState;
+      }
+    }
   }
 
   /**
@@ -39,7 +49,7 @@ public class AIContext implements TimerObserver {
     return e;
   }
 
-  public HasWeaponState HasWeaponState() {
+  public HasWeaponState getHasWeaponState() {
     return hasWeaponState;
   }
 

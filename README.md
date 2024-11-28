@@ -5,7 +5,7 @@
 
 ### TODO
 - ~~HasWeaponState~~
-- DeadState
+- ~~DeadState~~
 - ~~NoWeaponState~~
 - OutOfAmmoState
 - Updates to LifeForm (Code activity #1)
@@ -13,6 +13,7 @@
   - Push to 'designs' folder
 - AIContext
 - Simulator (Code Activity #3)
+- Checkstyle
 
 
 ### Is it acceptable for one or two team members to do more work than the others?

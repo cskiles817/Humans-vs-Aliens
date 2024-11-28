@@ -46,7 +46,7 @@ public class NoWeaponState extends ActionState {
    * Pickup weapon and change to Has Weapon state
    */
   private void acquireWeapon() {
-    context.setCurrentState(context.HasWeaponState());
+    context.setCurrentState(context.getHasWeaponState());
     Environment e = context.getEnvironment();
     AcquireCommand a = new AcquireCommand(e);
     a.execute();

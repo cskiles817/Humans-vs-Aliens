@@ -208,4 +208,8 @@ public class LifeForm {
       setRandomDirection();
     }
   }
+
+  public void setMaxLifePoints() {
+    currentLifePoints = maxLifePoints;
+  }
 }

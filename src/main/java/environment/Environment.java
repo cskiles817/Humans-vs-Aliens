@@ -305,4 +305,21 @@ public class Environment {
   public int getCol() {
     return focusCol;
   }
+
+  /**
+   * Returns info about a random cell
+   */
+  public Object[] getRandomCell() {
+    Object[] ob = new Object[4];
+    int randRow = (int)(Math.random() * 12);
+    int randCol = (int)(Math.random() * 12);
+    int numWeapons = cells[randRow][randCol].getWeaponsCount();
+    boolean hasLifeForm = (cells[randRow][randCol].getLifeForm() != null);
+    ob[0] = hasLifeForm;
+    ob[1] = numWeapons;
+    ob[2] = randRow;
+    ob[3] = randCol;
+    return ob;
+  }
+
 }

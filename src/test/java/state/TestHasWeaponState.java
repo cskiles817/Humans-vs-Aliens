@@ -4,6 +4,7 @@ import command.AcquireCommand;
 import command.AttackCommand;
 import environment.Environment;
 import exceptions.EnvironmentException;
+import exceptions.WeaponException;
 import lifeform.Alien;
 import lifeform.Human;
 import lifeform.MockLifeForm;
@@ -40,7 +41,7 @@ public class TestHasWeaponState {
     a.execute();
     AIContext context = new AIContext(l, e);
     context.execute();
-    assertEquals(context.HasWeaponState(), context.getCurrentState());
+    assertEquals(context.getHasWeaponState(), context.getCurrentState());
   }
 
   @Test
@@ -51,12 +52,12 @@ public class TestHasWeaponState {
     e.addLifeForm(h1, 1, 1);
     e.addWeapon(w, 2, 1);
     e.addLifeForm(h2, 2, 1);
-    e.focusCol = 1;
-    e.focusRow = 2;
-    AcquireCommand aq = new AcquireCommand(e);
-    aq.execute();
-    AttackCommand at = new AttackCommand(e);
-    at.execute();
+    h2.pickUpWeapon(w);
+    try {
+      h2.attack(h1, (int) e.getDistance(h1, h2));
+    } catch (WeaponException | EnvironmentException ex) {
+      throw new RuntimeException(ex);
+    }
     AIContext context = new AIContext(h1, e);
     context.execute();
     assertEquals(1, h1.getCurrentLifePoints());
@@ -67,16 +68,16 @@ public class TestHasWeaponState {
     Human h = new Human("h1", 1, 0);
     Alien a = new Alien("h2", 1);
     MockWeapon w = new MockWeapon();
+    AIContext context = new AIContext(h, e);
     e.addLifeForm(h, 1, 1);
     e.addWeapon(w, 2, 1);
     e.addLifeForm(a, 2, 1);
-    e.focusCol = 1;
-    e.focusRow = 2;
-    AcquireCommand aq = new AcquireCommand(e);
-    aq.execute();
-    AttackCommand at = new AttackCommand(e);
-    at.execute();
-    AIContext context = new AIContext(h, e);
+    a.pickUpWeapon(w);
+    try {
+      a.attack(h, (int) e.getDistance(a, h));
+    } catch (WeaponException | EnvironmentException ex) {
+      throw new RuntimeException(ex);
+    }
     context.execute();
     assertEquals(0, h.getCurrentLifePoints());
   }
@@ -86,17 +87,17 @@ public class TestHasWeaponState {
     Human h = new Human("h1", 1, 0);
     Alien a = new Alien("h2", 1);
     MockWeapon w = new MockWeapon();
+    AIContext context = new AIContext(h, e);
     w.setCurrentAmmo(1);
     e.addLifeForm(h, 1, 1);
     e.addWeapon(w, 2, 1);
     e.addLifeForm(a, 2, 1);
-    e.focusCol = 1;
-    e.focusRow = 2;
-    AcquireCommand aq = new AcquireCommand(e);
-    aq.execute();
-    AttackCommand at = new AttackCommand(e);
-    at.execute();
-    AIContext context = new AIContext(h, e);
+    a.pickUpWeapon(w);
+    try {
+      a.attack(h, (int) e.getDistance(h, a));
+    } catch (WeaponException | EnvironmentException ex) {
+      throw new RuntimeException(ex);
+    }
     context.execute();
     assertEquals(0, h.getCurrentLifePoints());
   }
@@ -106,16 +107,16 @@ public class TestHasWeaponState {
     Human h1 = new Human("h1", 1, 0);
     Human h2 = new Human("h2", 1, 0);
     MockWeapon w = new MockWeapon();
+    AIContext context = new AIContext(h1, e);
     e.addLifeForm(h1, 1, 1);
     e.addWeapon(w, 2, 1);
     e.addLifeForm(h2, 11, 1);
-    e.focusCol = 1;
-    e.focusRow = 11;
-    AcquireCommand aq = new AcquireCommand(e);
-    aq.execute();
-    AttackCommand at = new AttackCommand(e);
-    at.execute();
-    AIContext context = new AIContext(h1, e);
+    h2.pickUpWeapon(w);
+    try {
+      h2.attack(h1, (int) e.getDistance(h1, h2));
+    } catch (WeaponException | EnvironmentException ex) {
+      throw new RuntimeException(ex);
+    }
     context.execute();
     assertEquals(1, h1.getCurrentLifePoints());
   }

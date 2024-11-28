@@ -1,5 +1,5 @@
 # SWEN 200 Lab 7
-## Lucas Donovan and Connor Skiles   
+## Group Members: Lucas Donovan and Connor Skiles   
 ### How to run
 #### Run GUI.java under src/main/java/GUI
 
@@ -8,12 +8,11 @@
 - DeadState
 - ~~NoWeaponState~~
 - OutOfAmmoState
-- AIContext
 - Updates to LifeForm (Code activity #1)
 - Expanded Figure 2 UML (Code activity #2)
   - Push to 'designs' folder
+- AIContext
 - Simulator (Code Activity #3)
-
 
 
 ### Is it acceptable for one or two team members to do more work than the others?

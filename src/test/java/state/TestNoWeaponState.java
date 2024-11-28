@@ -56,7 +56,6 @@ public class TestNoWeaponState {
     l.setCurrentLifePoints(0);
     AIContext context = new AIContext(l, e);
     NoWeaponState nws = new NoWeaponState(context);
-    context.setCurrentState(nws);
     nws.executeAction();
     assertEquals(context.getDeadState(), context.getCurrentState());
   }

@@ -182,4 +182,30 @@ public class LifeForm {
     return maxSpeed;
   }
 
+  /**
+   * Change the direction to a different random direction
+   */
+  public void setRandomDirection() {
+    int dir = (int) (Math.random() * 4);
+    String current = direction;
+    switch (dir) {
+      case 0:
+        this.setDirection("North");
+        break;
+      case 1:
+        this.setDirection("East");
+        break;
+      case 2:
+        this.setDirection("South");
+        break;
+      case 3:
+        this.setDirection("West");
+        break;
+      default:
+        break;
+    }
+    if (current.equals(getDirection())) {
+      setRandomDirection();
+    }
+  }
 }

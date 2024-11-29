@@ -30,35 +30,17 @@ public class DeadState extends ActionState {
     Environment e = context.getEnvironment();
     if (l.hasWeapon()) {
       Weapon removed = l.dropWeapon();
-      getNewCell();
-      checkNumWeapons();
+      do {
+        getNewCell();
+      } while (numWeapons == 2);
       e.addWeapon(removed, row, col);
     }
     // Respawn
-    getNewCell();
-    checkHasLifeForm();
+    do {
+      getNewCell();
+    } while (hasLf);
     l.setMaxLifePoints();
     e.addLifeForm(l, row, col);
-  }
-
-  /**
-   * Check if the current cell can get another weapon
-   * if it cant, get a new cell until one is found
-   */
-  private void checkNumWeapons() {
-    while (numWeapons == 2) {
-      getNewCell();
-    }
-  }
-
-  /**
-   * Check if the current cell can get a lifeform
-   * if it cant, get a new cell until one is found
-   */
-  private void checkHasLifeForm() {
-    while (hasLf) {
-      getNewCell();
-    }
   }
 
   /**

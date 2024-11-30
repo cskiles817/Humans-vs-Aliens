@@ -9,7 +9,6 @@ import weapon.Weapon;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Environment {
   static Environment e;
 
@@ -17,7 +16,6 @@ public class Environment {
 
   public int focusRow = 0;
   public int focusCol = 0;
-
 
   private List<EnvironmentObserver> observers = new ArrayList<>();
 
@@ -34,14 +32,11 @@ public class Environment {
     notifyObservers(row, col, lf, getWeapons(row, col)[0], getWeapons(row, col)[1]);
   }
 
-
-
   /**
    * Adds a Lifeform to the cell
    *
    * @return if the Lifeform has been successfully added to the cell
    */
-
   public boolean addLifeForm(LifeForm entity, int row, int col) {
     boolean added = cells[row][col].addLifeForm(entity);
     if (added) {
@@ -49,7 +44,6 @@ public class Environment {
     }
     return added;
   }
-
 
   public boolean addWeapon(Weapon weapon, int row, int col) {
     return cells[row][col].addWeapon(weapon);
@@ -68,11 +62,10 @@ public class Environment {
     }
   }
 
-
   /**
    * Creates a Enviroment with provided rows and cols of the Cell class
    */
-  public Environment(int row, int col) {
+  private Environment(int row, int col) {
     cells = new Cell[row][col];
 
     for (int r = 0; r < row; r++) {
@@ -126,11 +119,9 @@ public class Environment {
     cells[row][col].removeWeapon(weapon);
   }
 
-
   /**
    * @return the LifeForm in this Cell.
    */
-
   public LifeForm getLifeForm(int row, int col) {
     if (cells[row][col] == null) {
       cells[row][col] = null;
@@ -143,7 +134,6 @@ public class Environment {
   /**
    * Removes the LifeForm in this Cell.
    */
-
   public void removeLifeForm(int row, int col) {
     if (cells[row][col] != null) {
       cells[row][col].removeLifeForm();
@@ -300,10 +290,6 @@ public class Environment {
     }
 
     return null;
-  }
-
-  public int getCol() {
-    return focusCol;
   }
 
   /**

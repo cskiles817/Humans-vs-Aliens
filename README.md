@@ -10,7 +10,8 @@
 - ~~OutOfAmmoState~~
 - Updates to LifeForm (Code activity #1)
 - Expanded Figure 2 UML (Code activity #2)
-  - Push to 'designs' folder
+  - Just need to add Simulator
+    - Push to 'designs' folder
 - ~~AIContext~~
 - Simulator (Code Activity #3)
 - Checkstyle

@@ -63,7 +63,7 @@ public class Environment {
   }
 
   /**
-   * Creates a Enviroment with provided rows and cols of the Cell class
+   * Creates an Environment with provided rows and cols of the Cell class
    */
   private Environment(int row, int col) {
     cells = new Cell[row][col];
@@ -108,8 +108,15 @@ public class Environment {
     return new Weapon[]{cells[row][col].getWeapon1(), cells[row][col].getWeapon2()};
   }
 
+  /**
+   *
+   * @param row of weapon
+   * @param col of weapon
+   * @return weapon
+   */
   public boolean hasWeapon(int row, int col) {
-    Weapon w1, w2;
+    Weapon w1;
+    Weapon w2;
     w1 = getWeapons(row, col)[0];
     w2 = getWeapons(row, col)[1];
     return w1 != null || w2 != null;

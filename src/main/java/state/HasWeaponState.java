@@ -14,7 +14,7 @@ public class HasWeaponState extends ActionState {
    * Constructor
    * @param context AI Context
    */
-  HasWeaponState(AIContext context) {
+  HasWeaponState(AiContext context) {
     super(context);
   }
 

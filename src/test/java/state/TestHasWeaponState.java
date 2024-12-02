@@ -1,7 +1,6 @@
 package state;
 
 import command.AcquireCommand;
-import command.AttackCommand;
 import environment.Environment;
 import exceptions.EnvironmentException;
 import exceptions.WeaponException;
@@ -39,7 +38,7 @@ public class TestHasWeaponState {
     e.addWeapon(w, 1, 1);
     AcquireCommand a = new AcquireCommand(e);
     a.execute();
-    AIContext context = new AIContext(l, e);
+    AiContext context = new AiContext(l, e);
     context.execute();
     assertEquals(context.getHasWeaponState(), context.getCurrentState());
   }
@@ -58,7 +57,7 @@ public class TestHasWeaponState {
     } catch (WeaponException | EnvironmentException ex) {
       throw new RuntimeException(ex);
     }
-    AIContext context = new AIContext(h1, e);
+    AiContext context = new AiContext(h1, e);
     context.execute();
     assertEquals(1, h1.getCurrentLifePoints());
   }
@@ -68,7 +67,7 @@ public class TestHasWeaponState {
     Human h = new Human("h1", 1, 0);
     Alien a = new Alien("h2", 1);
     MockWeapon w = new MockWeapon();
-    AIContext context = new AIContext(h, e);
+    AiContext context = new AiContext(h, e);
     e.addLifeForm(h, 1, 1);
     e.addWeapon(w, 2, 1);
     e.addLifeForm(a, 2, 1);
@@ -87,7 +86,7 @@ public class TestHasWeaponState {
     Human h = new Human("h1", 1, 0);
     Alien a = new Alien("h2", 1);
     MockWeapon w = new MockWeapon();
-    AIContext context = new AIContext(h, e);
+    AiContext context = new AiContext(h, e);
     w.setCurrentAmmo(1);
     e.addLifeForm(h, 1, 1);
     e.addWeapon(w, 2, 1);
@@ -107,7 +106,7 @@ public class TestHasWeaponState {
     Human h1 = new Human("h1", 1, 0);
     Human h2 = new Human("h2", 1, 0);
     MockWeapon w = new MockWeapon();
-    AIContext context = new AIContext(h1, e);
+    AiContext context = new AiContext(h1, e);
     e.addLifeForm(h1, 1, 1);
     e.addWeapon(w, 2, 1);
     e.addLifeForm(h2, 11, 1);
@@ -126,7 +125,7 @@ public class TestHasWeaponState {
     MockLifeForm l = new MockLifeForm("Mock", 1);
     e.addLifeForm(l, 1, 1);
     l.setCurrentLifePoints(0);
-    AIContext context = new AIContext(l, e);
+    AiContext context = new AiContext(l, e);
     HasWeaponState hws = new HasWeaponState(context);
     hws.executeAction();
     assertEquals(context.getDeadState(), context.getCurrentState());

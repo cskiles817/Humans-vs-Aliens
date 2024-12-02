@@ -3,12 +3,13 @@ package gameplay;
 import environment.Environment;
 
 public class Simulator implements TimerObserver {
-  private Environment e;
+  private Environment env;
   private SimpleTimer timer;
-  private int numHumans, numAliens;
+  private int numHumans;
+  private int numAliens;
 
   Simulator(Environment e, SimpleTimer timer, int numHumans, int numAliens) {
-    this.e = e;
+    this.env = e;
     this.timer = timer;
     this.numHumans = numHumans;
     this.numAliens = numAliens;

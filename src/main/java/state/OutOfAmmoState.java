@@ -13,7 +13,7 @@ public class OutOfAmmoState extends ActionState {
    *
    * @param context AI context
    */
-  OutOfAmmoState(AIContext context) {
+  OutOfAmmoState(AiContext context) {
     super(context);
   }
 

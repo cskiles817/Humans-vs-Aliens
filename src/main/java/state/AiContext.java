@@ -7,10 +7,10 @@ import lifeform.LifeForm;
 /**
  * Keep track of states
  */
-public class AIContext implements TimerObserver {
+public class AiContext implements TimerObserver {
 
-  private LifeForm lf;
-  private Environment e;
+  private LifeForm life;
+  private Environment env;
   private ActionState currentState;
   private final DeadState deadState = new DeadState(this);
   private final HasWeaponState hasWeaponState = new HasWeaponState(this);
@@ -22,12 +22,12 @@ public class AIContext implements TimerObserver {
    * @param lf lifeform
    * @param e  environment
    */
-  AIContext(LifeForm lf, Environment e) {
-    this.lf = lf;
-    this.e = e;
+  AiContext(LifeForm lf, Environment e) {
+    this.life = lf;
+    this.env = e;
     if (lf.getCurrentLifePoints() == 0) {
       currentState = deadState;
-    } else if (!lf.hasWeapon()){
+    } else if (!lf.hasWeapon()) {
       currentState = noWeaponState;
     } else {
       if (lf.getWeapon().getCurrentAmmo() == 0) {
@@ -66,7 +66,7 @@ public class AIContext implements TimerObserver {
    * @return e
    */
   public Environment getEnvironment() {
-    return e;
+    return env;
   }
 
   /**
@@ -82,7 +82,7 @@ public class AIContext implements TimerObserver {
    * @return lf
    */
   public LifeForm getLifeForm() {
-    return lf;
+    return life;
   }
 
   /**

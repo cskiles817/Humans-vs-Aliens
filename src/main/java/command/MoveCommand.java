@@ -1,6 +1,5 @@
 package command;
 
-import GUI.GUI;
 import environment.Environment;
 import lifeform.LifeForm;
 

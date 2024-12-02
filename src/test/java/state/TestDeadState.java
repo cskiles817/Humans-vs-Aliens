@@ -34,7 +34,7 @@ public class TestDeadState {
     e.addWeapon(w, 1, 1);
     l.pickUpWeapon(w);
     l.setCurrentLifePoints(0);
-    AIContext context = new AIContext(l, e);
+    AiContext context = new AiContext(l, e);
     context.execute();
     assertEquals(1, l.getCurrentLifePoints());
   }
@@ -44,7 +44,7 @@ public class TestDeadState {
     MockLifeForm l = new MockLifeForm("mock", 1);
     e.addLifeForm(l, 1, 1);
     l.setCurrentLifePoints(0);
-    AIContext context = new AIContext(l, e);
+    AiContext context = new AiContext(l, e);
     context.execute();
     assertEquals(1, l.getCurrentLifePoints());
   }

@@ -2,6 +2,7 @@ package command;
 
 import command.*;
 import environment.Environment;
+import exceptions.EnvironmentException;
 import lifeform.LifeForm;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,8 +19,8 @@ public class TestCommand {
   private Weapon chainGun;
 
   @Before
-  public void setUp() {
-    environment = new Environment(5, 5);
+  public void setUp() throws EnvironmentException {
+    environment = Environment.getEnvironment(5, 5);
     lifeForm = new LifeForm("Bob", 40);
     chainGun = new ChainGun();
     environment.addLifeForm(lifeForm, 0, 0);

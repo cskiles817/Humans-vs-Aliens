@@ -205,42 +205,51 @@ public class Environment {
       return false;
     }
 
-    int targetRow = entity.getRow();
-    int targetCol = entity.getCol();
     int speed = entity.getMaxSpeed();
-
-    if (cells[targetRow][targetCol].isOccupied()) {
-      System.out.println(
-              "Target cell is occupied by another LifeForm.");
-      speed--;
-    }
-
+    //System.out.println(entity.getName() + " speed = " + speed);
+    int targetRow = row;
+    int targetCol = col;
     switch (entity.getDirection()) {
       case "North":
         targetRow -= speed;
-        for (int i = 0; i < entity.getMaxSpeed(); i++) {
-          if (cells[targetRow][targetCol].isOccupied()) {
-            targetRow -= speed;
-          }
+        if (targetRow < 0) {
+            targetRow = 0;
+        }
+        while (cells[targetRow][targetCol].isOccupied() && targetRow != row) {
+          targetRow++;
         }
         break;
       case "South":
         targetRow += speed;
+        if (targetRow > getNumRows() - 1) {
+            targetRow = getNumRows() - 1;
+        }
+        while (cells[targetRow][targetCol].isOccupied() && targetRow != row) {
+          targetRow--;
+        }
         break;
       case "East":
         targetCol += speed;
+        if (targetCol > getNumCols() - 1) {
+          targetCol = getNumCols() - 1;
+        }
+        while (cells[targetRow][targetCol].isOccupied() && targetCol != col) {
+          targetCol++;
+        }
+
         break;
       case "West":
         targetCol -= speed;
+        if (targetCol < 0) {
+          targetCol = 0;
+        }
+        while (cells[targetRow][targetCol].isOccupied() && targetCol != col) {
+          targetCol--;
+        }
         break;
       default:
         System.out.println("Unknown direction. Cannot move.");
         return false;
-    }
-
-    if (targetRow < 0 || targetCol < 0 || targetRow >= getNumRows() || targetCol >= getNumCols()) {
-      System.out.println("Movement goes out of bounds.");
-      return false;
     }
 
     int currentRow = entity.getRow();

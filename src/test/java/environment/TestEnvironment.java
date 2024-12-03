@@ -22,6 +22,26 @@ public class TestEnvironment {
   }
 
   @Test
+  public void testMove() throws EnvironmentException {
+    Environment e = Environment.getEnvironment(12, 12);
+    e.clearBoard();
+
+    MockLifeForm l = new MockLifeForm("Mock", 1);
+    MockLifeForm l2 = new MockLifeForm("Mock", 1);
+    MockLifeForm l3 = new MockLifeForm("Mock", 1);
+    MockLifeForm l4 = new MockLifeForm("Mock", 1);
+    MockLifeForm l5 = new MockLifeForm("Mock", 1);
+
+    l.setDirection("South");
+
+    assertTrue(e.addLifeForm(l, 1, 5));
+    assertTrue(e.addLifeForm(l2, 6, 5));
+    e.moveLifeForm(l);
+    assertEquals(5, l.getRow());
+  }
+
+
+  @Test
   public void testEnvironmentInit() throws EnvironmentException {
     Environment env = Environment.getEnvironment(1,1);
     assertNull(env.getLifeForm(0,0));

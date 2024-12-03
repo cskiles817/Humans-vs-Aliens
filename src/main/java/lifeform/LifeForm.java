@@ -67,7 +67,7 @@ public class LifeForm {
   }
 
   /**
-   * If has weapon will remove it.
+   * If life form has weapon it will remove it.
    * @return Weapon Lifeform had.
    */
   public Weapon dropWeapon() {
@@ -103,7 +103,7 @@ public class LifeForm {
 
   /**
    * If Lifeform currently has weapon.
-   * @return True if has weapon.
+   * @return True if it has weapon.
    */
   public boolean hasWeapon() {
     return weapon != null;
@@ -113,7 +113,7 @@ public class LifeForm {
    * Pickup new weapon.
    * Will not pick up if already have weapon.
    * @param weapon Weapon to pick up.
-   * @return True if does not already have weapon.
+   * @return True if it does not already have weapon.
    */
   public boolean pickUpWeapon(Weapon weapon) {
     if (hasWeapon()) {
@@ -209,7 +209,7 @@ public class LifeForm {
     }
   }
 
-  public void setMaxLifePoints() {
-    currentLifePoints = maxLifePoints;
+  public void setMaxLifePoints(int maxLifePoints) {
+    this.maxLifePoints = maxLifePoints;
   }
 }

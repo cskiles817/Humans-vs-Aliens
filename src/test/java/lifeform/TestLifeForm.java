@@ -1,5 +1,6 @@
 package lifeform;
 
+import exceptions.RecoveryRateException;
 import exceptions.WeaponException;
 import org.junit.Test;
 import weapon.MockWeapon;
@@ -13,6 +14,32 @@ import static org.junit.Assert.assertEquals;
  */
 
 public class TestLifeForm {
+
+  @Test
+  public void testMaxLifePointsInitialization() {
+    LifeForm lifeForm = new LifeForm("test", 100);
+    assertEquals("Correct maxLifePoints",100, lifeForm.getMaxLifePoints());
+  }
+
+  @Test
+  public void testMaxLifePointsInitializationInAlien ()throws RecoveryRateException {
+    Alien alien1 = new Alien("Alien1 test",100);
+    assertEquals("Correct maxLifePoints",100, alien1.getMaxLifePoints());
+
+    Alien alien2 = new Alien("Alien1 test",80);
+    assertEquals("Correct maxLifePoints",80, alien2.getMaxLifePoints());
+
+    Alien alien3 = new Alien("Alien1 test",70);
+    assertEquals("Correct maxLifePoints",70, alien3.getMaxLifePoints());
+  }
+
+  @Test
+  public void testSetMaxLifePoints() {
+    LifeForm lifeForm = new LifeForm("test", 100);
+    assertEquals("Correct maxLifePoints",100, lifeForm.getMaxLifePoints());
+    lifeForm.maxLifePoints = 200;
+    assertEquals("Correct maxLifePoints",200, lifeForm.getMaxLifePoints());
+  }
 
   /**
    * Test for default direction to be "North"

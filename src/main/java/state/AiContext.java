@@ -11,7 +11,7 @@ public class AiContext implements TimerObserver {
 
   private LifeForm life;
   private Environment env;
-  private ActionState currentState;
+  private static ActionState currentState;
   private final DeadState deadState = new DeadState(this);
   private final HasWeaponState hasWeaponState = new HasWeaponState(this);
   private final NoWeaponState noWeaponState = new NoWeaponState(this);
@@ -22,7 +22,7 @@ public class AiContext implements TimerObserver {
    * @param lf lifeform
    * @param e  environment
    */
-  AiContext(LifeForm lf, Environment e) {
+  public AiContext(LifeForm lf, Environment e) {
     this.life = lf;
     this.env = e;
     if (lf.getCurrentLifePoints() == 0) {
@@ -41,7 +41,7 @@ public class AiContext implements TimerObserver {
   /**
    * execute the current state's action
    */
-  void execute() {
+  public void execute() {
     currentState.executeAction();
   }
 
@@ -114,6 +114,6 @@ public class AiContext implements TimerObserver {
    */
   @Override
   public void updateTime(int time) {
-
+    execute();
   }
 }

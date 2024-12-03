@@ -53,7 +53,7 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
   JLabel stats;
 
   // the game environment
-  private static Environment e;
+  public static Environment e;
 
   // current Cell of interest
   int mapFocusRow = 0;

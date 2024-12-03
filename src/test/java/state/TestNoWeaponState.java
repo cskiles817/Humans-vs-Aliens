@@ -33,7 +33,7 @@ public class TestNoWeaponState {
     e.addWeapon(w, 1, 1);
     e.addLifeForm(l, 1, 1);
 
-    AIContext context = new AIContext(l, e);
+    AiContext context = new AiContext(l, e);
     context.execute();
     assertEquals(context.getHasWeaponState(), context.getCurrentState());
   }
@@ -42,7 +42,7 @@ public class TestNoWeaponState {
   public void testNoWeaponInCell() {
     MockLifeForm l = new MockLifeForm("Mock", 1);
     e.addLifeForm(l, 1, 1);
-    AIContext context = new AIContext(l, e);
+    AiContext context = new AiContext(l, e);
     context.execute();
     assertEquals(context.getNoWeaponState(), context.getCurrentState());
   }
@@ -51,7 +51,7 @@ public class TestNoWeaponState {
   public void testIfDead() {
     MockLifeForm l = new MockLifeForm("Mock", 1);
     e.addLifeForm(l, 1, 1);
-    AIContext context = new AIContext(l, e);
+    AiContext context = new AiContext(l, e);
     l.setCurrentLifePoints(0);
     context.execute();
     assertEquals(context.getDeadState(), context.getCurrentState());

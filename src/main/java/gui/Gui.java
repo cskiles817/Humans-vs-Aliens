@@ -2,7 +2,7 @@
  *
  */
 
-package GUI;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,8 +11,6 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.Scanner;
 
@@ -27,7 +25,6 @@ import command.InvokerBuilder;
 import exceptions.EnvironmentException;
 import recovery.RecoveryFractional;
 import recovery.RecoveryLinear;
-import weapon.Attachment;
 import weapon.ChainGun;
 import weapon.Pistol;
 import weapon.PlasmaCannon;
@@ -39,7 +36,6 @@ import environment.Environment;
 import exceptions.AttachmentException;
 import exceptions.RecoveryRateException;
 import gameplay.EnvironmentObserver;
-import gameplay.SimpleTimer;
 import lifeform.Alien;
 import lifeform.Human;
 import lifeform.LifeForm;
@@ -48,9 +44,11 @@ import lifeform.LifeForm;
  * @author Dr. Alice Armstrong
  *
  */
-public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
+public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
 
-  JPanel map, legend, statsPanel;
+  JPanel map;
+  JPanel legend;
+  JPanel statsPanel;
   JButton[][] mapArray;
   JLabel stats;
 
@@ -66,16 +64,16 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
   Color black = new Color(0, 0, 0);
   Color white = new Color(255, 255, 255);
   Color pink = new Color(200, 126, 135); // active cell color
-  Color weapon_0 = new Color(104, 208, 255); // teal, weapon with no attachments
-  Color weapon_1 = new Color(128, 0, 255); // purple, weapon with 1 attachment
-  Color weapon_2 = new Color(128, 0, 64); // magenta, weapon with 2 attachments
+  Color weaponZero = new Color(104, 208, 255); // teal, weapon with no attachments
+  Color weaponOne = new Color(128, 0, 255); // purple, weapon with 1 attachment
+  Color weaponTwo = new Color(128, 0, 64); // magenta, weapon with 2 attachments
   Color fullHealth = new Color(0, 128, 0); // green
   Color halfHealth = new Color(229, 110, 0); // orange
   Color lowHealth = new Color(236, 0, 0); // red
 
-  final int GRID_SIZE = 40; // size of a grid square
-  final int WEAPON_SIZE = 7; // size of a weapon icon (circle)
-  final int LIFEFORM_SIZE = 20; // size of an life form icon
+  final int gridSize = 40; // size of a grid square
+  final int weaponSize = 7; // size of a weapon icon (circle)
+  final int lifeFormSize = 20; // size of a life form icon
 
   static final int ROWS = 12;
   static final int COLS = 12;
@@ -85,7 +83,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
    * @throws RecoveryRateException
    * @throws EnvironmentException
    */
-  public GUI() throws RecoveryRateException, EnvironmentException {
+  public Gui() throws RecoveryRateException, EnvironmentException {
 
     // create the game environment
     e = Environment.getEnvironment(ROWS, COLS);
@@ -94,7 +92,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // the area for the map grid
     map = new JPanel(new GridLayout(ROWS, COLS));
-    map.setPreferredSize(new Dimension(GRID_SIZE * ROWS, GRID_SIZE * COLS));
+    map.setPreferredSize(new Dimension(gridSize * ROWS, gridSize * COLS));
     mapArray = new JButton[ROWS][COLS];
     for (int r = 0; r < ROWS; r++) {
       for (int c = 0; c < COLS; c++) {
@@ -117,7 +115,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     JPanel icons = new JPanel(new GridLayout(0, 1));
     JPanel descr = new JPanel(new GridLayout(0, 1));
     JLabel[][] legendArray = new JLabel[20][2];
-    Dimension labelDim = new Dimension(GRID_SIZE * 10, GRID_SIZE);
+    Dimension labelDim = new Dimension(gridSize * 10, gridSize);
     ImageIcon temp;
 
     // fill the legend
@@ -159,7 +157,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // two weapons only, then remove first
     /*
-     * test & works, removed for layotu clarity temp = createEmptyCell(); temp =
+     * test & works, removed for layout clarity temp = createEmptyCell(); temp =
      * addFirstWeapon(temp, 0); temp = addSecondWeapon(temp, 2); temp =
      * removeFirstWeapon(temp); legendArray[5][0] = new JLabel(temp);
      * icons.add(legendArray[5][0]); legendArray[5][1] = new
@@ -318,13 +316,13 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
    * @return
    */
   public ImageIcon createEmptyCell() {
-    BufferedImage empty = new BufferedImage(GRID_SIZE, GRID_SIZE, BufferedImage.TYPE_3BYTE_BGR);
+    BufferedImage empty = new BufferedImage(gridSize, gridSize, BufferedImage.TYPE_3BYTE_BGR);
     Graphics drawer = empty.getGraphics();
 
     drawer.setColor(grey);
-    drawer.fillRect(0, 0, GRID_SIZE, GRID_SIZE);
+    drawer.fillRect(0, 0, gridSize, gridSize);
     drawer.setColor(black);
-    drawer.drawRect(0, 0, GRID_SIZE, GRID_SIZE);
+    drawer.drawRect(0, 0, gridSize, gridSize);
     // drawer.setColor(new Color(0,255,0));
     // drawer.fillOval(20, 20, 10, 10);
 
@@ -338,13 +336,13 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
    * @return
    */
   public ImageIcon createActiveCell() {
-    BufferedImage empty = new BufferedImage(GRID_SIZE, GRID_SIZE, BufferedImage.TYPE_3BYTE_BGR);
+    BufferedImage empty = new BufferedImage(gridSize, gridSize, BufferedImage.TYPE_3BYTE_BGR);
     Graphics drawer = empty.getGraphics();
 
     drawer.setColor(pink);
-    drawer.fillRect(0, 0, GRID_SIZE, GRID_SIZE);
+    drawer.fillRect(0, 0, gridSize, gridSize);
     drawer.setColor(black);
-    drawer.drawRect(0, 0, GRID_SIZE, GRID_SIZE);
+    drawer.drawRect(0, 0, gridSize, gridSize);
     // drawer.setColor(new Color(0,255,0));
     // drawer.fillOval(20, 20, 10, 10);
 
@@ -353,7 +351,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
   /* ~~~ ADD ITEMS TO A CELL ~~~ */
   /**
-   * adds a weapon in the upper righthand corner of the cell, assumes the first
+   * adds a weapon in the upper right hand corner of the cell, assumes the first
    * weapon slot is empty
    *
    * @param icon           the current image of the cell
@@ -374,20 +372,20 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // set the appropriate fill color for the weapon icon
     if (numAttachments == 0) {
-      drawer.setColor(weapon_0);
+      drawer.setColor(weaponZero);
     } else if (numAttachments == 1) {
-      drawer.setColor(weapon_1);
+      drawer.setColor(weaponOne);
     } else {
-      drawer.setColor(weapon_2);
+      drawer.setColor(weaponTwo);
     }
 
-    drawer.fillOval(GRID_SIZE - WEAPON_SIZE, 0, WEAPON_SIZE, WEAPON_SIZE);
+    drawer.fillOval(gridSize - weaponSize, 0, weaponSize, weaponSize);
 
     return new ImageIcon(bi);
   }
 
   /**
-   * adds a weapon in the lower righthand corner of the cell, assumes the second
+   * adds a weapon in the lower right hand corner of the cell, assumes the second
    * weapon slot is empty
    *
    * @param icon           the current image of the cell
@@ -408,14 +406,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // set the appropriate fill color for the weapon icon
     if (numAttachments == 0) {
-      drawer.setColor(weapon_0);
+      drawer.setColor(weaponZero);
     } else if (numAttachments == 1) {
-      drawer.setColor(weapon_1);
+      drawer.setColor(weaponOne);
     } else {
-      drawer.setColor(weapon_2);
+      drawer.setColor(weaponTwo);
     }
 
-    drawer.fillOval(GRID_SIZE - WEAPON_SIZE, GRID_SIZE - WEAPON_SIZE, WEAPON_SIZE, WEAPON_SIZE);
+    drawer.fillOval(gridSize - weaponSize, gridSize - weaponSize, weaponSize, weaponSize);
 
     return new ImageIcon(bi);
   }
@@ -444,7 +442,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // set the fill color to white
     drawer.setColor(white);
     // fill the Alien icon
-    drawer.fillOval(GRID_SIZE / 4, GRID_SIZE / 4, LIFEFORM_SIZE, LIFEFORM_SIZE);
+    drawer.fillOval(gridSize / 4, gridSize / 4, lifeFormSize, lifeFormSize);
 
     // draw the life bar
     icon = addLifeBar(new ImageIcon(bi), alien);
@@ -483,7 +481,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // set the fill color to white
     drawer.setColor(white);
     // fill the Alien icon
-    drawer.fillRect(GRID_SIZE / 4, GRID_SIZE / 4, LIFEFORM_SIZE, LIFEFORM_SIZE);
+    drawer.fillRect(gridSize / 4, gridSize / 4, lifeFormSize, lifeFormSize);
 
     // draw the life bar
     icon = addLifeBar(new ImageIcon(bi), human);
@@ -520,22 +518,22 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // set the appropriate fill color for the weapon icon
     if (numAttachments == 0) {
-      drawer.setColor(weapon_0);
+      drawer.setColor(weaponZero);
     } else if (numAttachments == 1) {
-      drawer.setColor(weapon_1);
+      drawer.setColor(weaponOne);
     } else {
-      drawer.setColor(weapon_2);
+      drawer.setColor(weaponTwo);
     }
 
-    drawer.fillOval(GRID_SIZE / 2 - WEAPON_SIZE / 2,
-            GRID_SIZE / 2 - WEAPON_SIZE / 2,
-            WEAPON_SIZE, WEAPON_SIZE);
+    drawer.fillOval(gridSize / 2 - weaponSize / 2,
+            gridSize / 2 - weaponSize / 2,
+            weaponSize, weaponSize);
     return new ImageIcon(bi);
   }
 
   /**
-   * add a lifebar "behind" a Lifeform. If the LifeForm is facing North, the
-   * lifebar will be on the south side of the lifeform icon
+   * add a life bar "behind" a Lifeform. If the LifeForm is facing North, the
+   * life bar will be on the south side of the lifeform icon
    *
    * @param icon           the current cell image
    * @return the updated image
@@ -556,7 +554,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     double life = (double) being.getCurrentLifePoints() / being.getMaxLifePoints();
 
     // set the length of the life bar
-    int barsize = (int) (life * GRID_SIZE - 2);
+    int barsize = (int) (life * gridSize - 2);
 
     // set the appropriate fill color for the life bar
     if (life > 0.8) {
@@ -570,16 +568,16 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // pick a location
     if (being.getDirection().equals("North")) {
       // place the bar on the south side of the icon
-      drawer.fillRect(2, GRID_SIZE - WEAPON_SIZE - 1, barsize, 2);
+      drawer.fillRect(2, gridSize - weaponSize - 1, barsize, 2);
     } else if (being.getDirection().equals("South")) {
       // place the bar on the north side of the icon
-      drawer.fillRect(2, WEAPON_SIZE + 1, barsize, 2);
+      drawer.fillRect(2, weaponSize + 1, barsize, 2);
     } else if (being.getDirection().equals("East")) {
       // place the bar on the west side of the icon
-      drawer.fillRect(WEAPON_SIZE + 1, 2, 2, barsize);
+      drawer.fillRect(weaponSize + 1, 2, 2, barsize);
     } else {
       // place the bar on the east side of the icon
-      drawer.fillRect(GRID_SIZE - WEAPON_SIZE - 1, 2, 2, barsize);
+      drawer.fillRect(gridSize - weaponSize - 1, 2, 2, barsize);
     }
 
     return new ImageIcon(bi);
@@ -587,7 +585,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
   /* ~~~ REMOVE ITEMS FROM A CELL ~~~ */
   /**
-   * removes a weapon in the upper righthand corner of the cell
+   * removes a weapon in the upper right hand corner of the cell
    *
    * @param icon the current image of the cell
    * @return an updated image for a cell
@@ -606,13 +604,13 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // set the background color
     drawer.setColor(grey);
-    drawer.fillOval(GRID_SIZE - WEAPON_SIZE, 0, WEAPON_SIZE, WEAPON_SIZE);
+    drawer.fillOval(gridSize - weaponSize, 0, weaponSize, weaponSize);
 
     return new ImageIcon(bi);
   }
 
   /**
-   * removes a weapon in the lower righthand corner of the cell
+   * removes a weapon in the lower right hand corner of the cell
    *
    * @param icon the current image of the cell
    * @return the updated image of the cell
@@ -631,7 +629,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // set to background color
     drawer.setColor(grey);
-    drawer.fillOval(GRID_SIZE - WEAPON_SIZE, GRID_SIZE - WEAPON_SIZE, WEAPON_SIZE, WEAPON_SIZE);
+    drawer.fillOval(gridSize - weaponSize, gridSize - weaponSize, weaponSize, weaponSize);
 
     return new ImageIcon(bi);
   }
@@ -658,9 +656,9 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // set to white (the life form color)
     drawer.setColor(white);
 
-    drawer.fillOval(GRID_SIZE / 2 - WEAPON_SIZE / 2,
-            GRID_SIZE / 2 - WEAPON_SIZE / 2,
-            WEAPON_SIZE, WEAPON_SIZE);
+    drawer.fillOval(gridSize / 2 - weaponSize / 2,
+            gridSize / 2 - weaponSize / 2,
+            weaponSize, weaponSize);
     return new ImageIcon(bi);
   }
 
@@ -689,13 +687,13 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // set the fill color to white
     drawer.setColor(grey);
     // fill the Alien icon
-    drawer.fillRect(GRID_SIZE / 4, GRID_SIZE / 4, LIFEFORM_SIZE, LIFEFORM_SIZE);
+    drawer.fillRect(gridSize / 4, gridSize / 4, lifeFormSize, lifeFormSize);
 
     return new ImageIcon(bi);
   }
 
   /**
-   * removes the lifebar from an image
+   * removes the life bar from an image
    *
    * @param icon  the current image
    * @param being the lifeform in the cell
@@ -719,16 +717,16 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // pick a location
     if (being.getDirection().equals("North")) {
       // place the bar on the south side of the icon
-      drawer.fillRect(2, GRID_SIZE - WEAPON_SIZE - 1, GRID_SIZE - 2, 2);
+      drawer.fillRect(2, gridSize - weaponSize - 1, gridSize - 2, 2);
     } else if (being.getDirection().equals("South")) {
       // place the bar on the north side of the icon
-      drawer.fillRect(2, WEAPON_SIZE + 1, GRID_SIZE - 2, 2);
+      drawer.fillRect(2, weaponSize + 1, gridSize - 2, 2);
     } else if (being.getDirection().equals("East")) {
       // place the bar on the west side of the icon
-      drawer.fillRect(WEAPON_SIZE + 1, 2, 2, GRID_SIZE - 2);
+      drawer.fillRect(weaponSize + 1, 2, 2, gridSize - 2);
     } else {
       // place the bar on the east side of the icon
-      drawer.fillRect(GRID_SIZE - WEAPON_SIZE - 1, 2, 2, GRID_SIZE - 2);
+      drawer.fillRect(gridSize - weaponSize - 1, 2, 2, gridSize - 2);
     }
 
     return new ImageIcon(bi);
@@ -740,18 +738,18 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
    * @return
    */
   public ImageIcon createEmptyPad() {
-    BufferedImage empty = new BufferedImage(240, GRID_SIZE, BufferedImage.TYPE_3BYTE_BGR);
+    BufferedImage empty = new BufferedImage(240, gridSize, BufferedImage.TYPE_3BYTE_BGR);
     Graphics drawer = empty.getGraphics();
     Color grey = new Color(240, 240, 240);
 
     drawer.setColor(grey);
-    drawer.fillRect(0, 0, 600, GRID_SIZE);
+    drawer.fillRect(0, 0, 600, gridSize);
 
     return new ImageIcon(empty);
   }
 
   /**
-   * handles button clicks on the map clicked Cell's info is diplayed below the
+   * handles button clicks on the map clicked Cell's info is displayed below the
    * Map LATER: cell action options will be displayed to the East of the Map
    *
    * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
@@ -916,7 +914,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
       e.printStackTrace();
     }
 
-    // add Weapons to the Evironment
+    // add Weapons to the Environment
     Pistol p;
     PlasmaCannon plasmaCannon;
     ChainGun c;
@@ -1444,7 +1442,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // repaint the cell
     mapArray[row][col].setIcon(tempIcon);
 
-    // if the cell if focus has changed, update that into
+    // if the cell is focus has changed, update that into
     if (row == mapFocusRow && col == mapFocusCol) {
       Object temp = new Object(); // for Action event
       ActionEvent refocus = new ActionEvent(temp, 0, "cell: " + row + " " + col);
@@ -1463,7 +1461,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
    */
   public static void main(String[] args) {
     try {
-      GUI gui = new GUI();
+      Gui gui = new Gui();
       e.addObserver(gui);
       InvokerBuilder builder = new InvokerBuilder();
       Invoker inv = builder.loadCommands(e);

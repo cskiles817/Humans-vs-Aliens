@@ -17,12 +17,13 @@ public class DeadState extends ActionState {
    * Constructor
    * @param context
    */
-  DeadState(AIContext context) {
+  DeadState(AiContext context) {
     super(context);
   }
 
   /**
-   *  If the LifeForm had a weapon then remove that weapon and place it in a random Cell in the Environment (that has space).
+   *  If the LifeForm had a weapon then remove that weapon and
+   *  place it in a random Cell in the Environment (that has space).
    */
   public void executeAction() {
     // Move weapon to random cell that has space

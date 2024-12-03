@@ -29,7 +29,7 @@ public class TestAIContext {
   @Test
   public void testChangeActiveState() {
     MockLifeForm l = new MockLifeForm("Mock", 1);
-    AIContext context = new AIContext(l, e);
+    AiContext context = new AiContext(l, e);
     context.setCurrentState(context.getDeadState());
     assertEquals(context.getCurrentState(), context.getDeadState());
   }
@@ -37,7 +37,7 @@ public class TestAIContext {
   @Test
   public void testCanGetState() {
     MockLifeForm l = new MockLifeForm("Mock", 1);
-    AIContext context = new AIContext(l, e);
+    AiContext context = new AiContext(l, e);
     assertNotNull(context.getCurrentState());
   }
 }

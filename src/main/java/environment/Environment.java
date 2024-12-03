@@ -1,6 +1,5 @@
 package environment;
 
-import exceptions.AttachmentException;
 import exceptions.EnvironmentException;
 import gameplay.EnvironmentObserver;
 import lifeform.LifeForm;
@@ -109,7 +108,6 @@ public class Environment {
   }
 
   /**
-   *
    * @param row of weapon
    * @param col of weapon
    * @return weapon
@@ -150,6 +148,7 @@ public class Environment {
 
   /**
    * gets distance between two pairs of rows and columns
+   *
    * @param row1
    * @param col1
    * @param row2
@@ -175,6 +174,7 @@ public class Environment {
 
   /**
    * gets distance between two lifeforms
+   *
    * @param a
    * @param b
    * @return
@@ -193,6 +193,7 @@ public class Environment {
 
   /**
    * Lifeform wants to move locations in direction
+   *
    * @param entity Lifeform
    * @return
    */
@@ -213,7 +214,7 @@ public class Environment {
       case "North":
         targetRow -= speed;
         if (targetRow < 0) {
-            targetRow = 0;
+          targetRow = 0;
         }
         while (cells[targetRow][targetCol].isOccupied() && targetRow != row) {
           targetRow++;
@@ -222,7 +223,7 @@ public class Environment {
       case "South":
         targetRow += speed;
         if (targetRow > getNumRows() - 1) {
-            targetRow = getNumRows() - 1;
+          targetRow = getNumRows() - 1;
         }
         while (cells[targetRow][targetCol].isOccupied() && targetRow != row) {
           targetRow--;
@@ -265,16 +266,17 @@ public class Environment {
             + targetCol + ") facing "
             + entity.getDirection());
 
-    notifyObservers(row, col, null, getWeapons(row,col)[0], getWeapons(row,col)[1]);
+    notifyObservers(row, col, null, getWeapons(row, col)[0], getWeapons(row, col)[1]);
     notifyObservers(targetRow, targetCol, entity,
-            getWeapons(targetRow,targetCol)[0],
-            getWeapons(targetRow,targetCol)[1]);
+            getWeapons(targetRow, targetCol)[0],
+            getWeapons(targetRow, targetCol)[1]);
 
     return true;
   }
 
   /**
    * See what lifeForm a lifeForm is targeting
+   *
    * @param lf Current Lifeform
    * @return Lifeform or null
    */
@@ -313,8 +315,8 @@ public class Environment {
    */
   public Object[] getRandomCell() {
     Object[] ob = new Object[4];
-    int randRow = (int)(Math.random() * 12);
-    int randCol = (int)(Math.random() * 12);
+    int randRow = (int) (Math.random() * 12);
+    int randCol = (int) (Math.random() * 12);
     int numWeapons = cells[randRow][randCol].getWeaponsCount();
     boolean hasLifeForm = (cells[randRow][randCol].getLifeForm() != null);
     ob[0] = hasLifeForm;

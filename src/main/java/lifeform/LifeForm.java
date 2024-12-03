@@ -7,8 +7,7 @@ import weapon.Weapon;
  * Keeps track of the information associated with a simple life form.
  * Also provides the functionality related to the life form.
  */
-public class LifeForm
-{
+public class LifeForm {
   private String myName;
   protected int currentLifePoints;
 
@@ -26,8 +25,7 @@ public class LifeForm
 
   protected int maxSpeed;
 
-  public LifeForm(String name, int life)
-  {
+  public LifeForm(String name, int life) {
     this(name, life, 0);
   }
 
@@ -37,8 +35,7 @@ public class LifeForm
    * @param name the name of the life form
    * @param life the current starting life points of the life form
    */
-  public LifeForm(String name, int life, int attackDmg)
-  {
+  public LifeForm(String name, int life, int attackDmg) {
     myName = name;
     currentLifePoints = life;
     maxLifePoints = life;
@@ -52,23 +49,19 @@ public class LifeForm
    *
    * @param target Which LifeForm to attack.
    */
-  public void attack(LifeForm target, int distance) throws WeaponException
-  {
-    if (currentLifePoints == 0)
-    { //Alien is dead
+  public void attack(LifeForm target, int distance) throws WeaponException {
+    if (currentLifePoints == 0) { //Alien is dead
       return;
     }
 
     //has usable weapon
-    if (hasWeapon() && weapon.getCurrentAmmo() > 0)
-    {
+    if (hasWeapon() && weapon.getCurrentAmmo() > 0) {
       target.takeHit(weapon.fire(distance));
       return;
     }
 
     //melee
-    if (distance <= 5)
-    {
+    if (distance <= 5) {
       target.takeHit(attackStrength);
       return;
     }
@@ -79,8 +72,7 @@ public class LifeForm
    *
    * @return Weapon Lifeform had.
    */
-  public Weapon dropWeapon()
-  {
+  public Weapon dropWeapon() {
     Weapon current = weapon;
     weapon = null;
 
@@ -93,24 +85,21 @@ public class LifeForm
    *
    * @return Int of attack Strength
    */
-  public int getAttackStrength()
-  {
+  public int getAttackStrength() {
     return attackStrength;
   }
 
   /**
    * @return the amount of current life points the life form has.
    */
-  public int getCurrentLifePoints()
-  {
+  public int getCurrentLifePoints() {
     return currentLifePoints;
   }
 
   /**
    * @return the name of the life form.
    */
-  public String getName()
-  {
+  public String getName() {
     return myName;
   }
 
@@ -119,8 +108,7 @@ public class LifeForm
    *
    * @return True if it has weapon.
    */
-  public boolean hasWeapon()
-  {
+  public boolean hasWeapon() {
     return weapon != null;
   }
 
@@ -131,10 +119,8 @@ public class LifeForm
    * @param weapon Weapon to pick up.
    * @return True if it does not already have weapon.
    */
-  public boolean pickUpWeapon(Weapon weapon)
-  {
-    if (hasWeapon())
-    {
+  public boolean pickUpWeapon(Weapon weapon) {
+    if (hasWeapon()) {
       return false;
     }
     this.weapon = weapon;
@@ -147,8 +133,7 @@ public class LifeForm
    *
    * @param damage
    */
-  public void takeHit(int damage)
-  {
+  public void takeHit(int damage) {
     currentLifePoints = Math.max(0, currentLifePoints - damage);
   }
 
@@ -158,10 +143,8 @@ public class LifeForm
    * @param row
    * @param col
    */
-  public void setLocation(int row, int col)
-  {
-    if (row >= 0 && col >= 0)
-    {
+  public void setLocation(int row, int col) {
+    if (row >= 0 && col >= 0) {
       this.row = row;
       this.col = col;
     }
@@ -172,8 +155,7 @@ public class LifeForm
    *
    * @return
    */
-  public int getRow()
-  {
+  public int getRow() {
     return row;
   }
 
@@ -182,47 +164,39 @@ public class LifeForm
    *
    * @return
    */
-  public int getCol()
-  {
+  public int getCol() {
     return col;
   }
 
 
   //needed for GUI provided
-  public Weapon getWeapon()
-  {
+  public Weapon getWeapon() {
     return weapon;
   }
 
-  public int getMaxLifePoints()
-  {
+  public int getMaxLifePoints() {
     return maxLifePoints;
   }
 
-  public void setDirection(String newDirection)
-  {
+  public void setDirection(String newDirection) {
     direction = newDirection;
   }
 
-  public String getDirection()
-  {
+  public String getDirection() {
     return direction;
   }
 
-  public int getMaxSpeed()
-  {
+  public int getMaxSpeed() {
     return maxSpeed;
   }
 
   /**
    * Change the direction to a different random direction
    */
-  public void setRandomDirection()
-  {
+  public void setRandomDirection() {
     int dir = (int) (Math.random() * 4);
     String current = direction;
-    switch (dir)
-    {
+    switch (dir) {
       case 0:
         this.setDirection("North");
         break;
@@ -238,14 +212,12 @@ public class LifeForm
       default:
         break;
     }
-    if (current.equals(getDirection()))
-    {
+    if (current.equals(getDirection())) {
       setRandomDirection();
     }
   }
 
-  public void setMaxLifePoints(int maxLifePoints)
-  {
+  public void setMaxLifePoints(int maxLifePoints) {
     this.maxLifePoints = maxLifePoints;
   }
 }

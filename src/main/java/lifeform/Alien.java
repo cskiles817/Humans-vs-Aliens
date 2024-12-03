@@ -56,6 +56,7 @@ public class Alien extends LifeForm implements TimerObserver {
 
   /**
    * Gets the Alien recovery rate
+   *
    * @return rate of recovery
    */
   public int getRecoveryRate() {
@@ -86,8 +87,7 @@ public class Alien extends LifeForm implements TimerObserver {
       count += 1;
     } else if (currentLifePoints < maxLifePoints) {
       recover();
-    } else
-    {
+    } else {
       count = 1;
     }
   }

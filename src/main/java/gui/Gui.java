@@ -4,45 +4,29 @@
 
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.util.Scanner;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import command.Invoker;
 import command.InvokerBuilder;
-import exceptions.EnvironmentException;
-import recovery.RecoveryFractional;
-import recovery.RecoveryLinear;
-import weapon.ChainGun;
-import weapon.Pistol;
-import weapon.PlasmaCannon;
-import weapon.PowerBooster;
-import weapon.Scope;
-import weapon.Stabilizer;
-import weapon.Weapon;
 import environment.Environment;
 import exceptions.AttachmentException;
+import exceptions.EnvironmentException;
 import exceptions.RecoveryRateException;
 import gameplay.EnvironmentObserver;
 import lifeform.Alien;
 import lifeform.Human;
 import lifeform.LifeForm;
+import recovery.RecoveryFractional;
+import recovery.RecoveryLinear;
+import weapon.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.util.Scanner;
 
 /**
  * @author Dr. Alice Armstrong
- *
  */
 public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
 
@@ -80,6 +64,7 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
 
   /**
    * Create GUI Interface to display game board
+   *
    * @throws RecoveryRateException
    * @throws EnvironmentException
    */
@@ -288,11 +273,11 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
     legend.add(descr, BorderLayout.CENTER);
 
     stats = new JLabel("<html><center><p>Cell Stats Will Go Here...</p>"
-        + "LifeForm Type: name [if LifeForm in Cell]<br>"
+            + "LifeForm Type: name [if LifeForm in Cell]<br>"
             +
             "LifeForm LP: <br>" + "Weapon: weapon<br>"
-        + "Direction: direction<br>" + "-------------------------------------------<br>"
-        + "Weapon1 Info: [if present]<br>" + "Weapon2 Info: [if present]</center></html>");
+            + "Direction: direction<br>" + "-------------------------------------------<br>"
+            + "Weapon1 Info: [if present]<br>" + "Weapon2 Info: [if present]</center></html>");
     stats.setPreferredSize(new Dimension(600, 200));
     statsPanel = new JPanel();
     statsPanel.add(stats);
@@ -350,6 +335,7 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
   }
 
   /* ~~~ ADD ITEMS TO A CELL ~~~ */
+
   /**
    * adds a weapon in the upper right hand corner of the cell, assumes the first
    * weapon slot is empty
@@ -535,7 +521,7 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
    * add a life bar "behind" a Lifeform. If the LifeForm is facing North, the
    * life bar will be on the south side of the lifeform icon
    *
-   * @param icon           the current cell image
+   * @param icon the current cell image
    * @return the updated image
    */
   public ImageIcon addLifeBar(ImageIcon icon, LifeForm being) {
@@ -584,6 +570,7 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
   }
 
   /* ~~~ REMOVE ITEMS FROM A CELL ~~~ */
+
   /**
    * removes a weapon in the upper right hand corner of the cell
    *
@@ -777,7 +764,6 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
         }
 
 
-
       }
 
       if (weapon1 != null) {
@@ -869,7 +855,7 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
     Human h3 = new Human("Human3", 25, 2);
     Human h4 = new Human("Human4", 30, 8);
 
-    Human[] humanArray = { h1, h2, h3, h4 };
+    Human[] humanArray = {h1, h2, h3, h4};
 
     boolean placed = false;
     // add humans to random locations
@@ -895,7 +881,7 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
       Alien a2 = new Alien("Alien2", 30, l, 2);
       Alien a3 = new Alien("Alien3", 10, f, 1);
       Alien a4 = new Alien("Alien4", 15, l, 4);
-      Alien[] alienArray = { a1, a2, a3, a4 };
+      Alien[] alienArray = {a1, a2, a3, a4};
 
       for (int i = 0; i < 4; i++) {
         do {
@@ -1409,7 +1395,7 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
    * redraws the map cell to reflect the new state of the cell in the Environment
    *
    * @see gameplay.EnvironmentObserver#updateCell(int, int, lifeform.LifeForm,
-   *      weapon.Weapon, weapon.Weapon)
+   * weapon.Weapon, weapon.Weapon)
    */
   @Override
   public void updateCell(int row, int col, LifeForm lifeform, Weapon weapon1, Weapon weapon2) {
@@ -1457,6 +1443,7 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
 
   /**
    * Run The Alien, Human Simulation
+   *
    * @param args
    */
   public static void main(String[] args) {
@@ -1470,28 +1457,28 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
 
       Human human1 = new Human("Dr. Huo", 100, 8);
       e.addLifeForm(human1, 5, 5);
-      e.setLifeForm(5,5,human1);
+      e.setLifeForm(5, 5, human1);
 
       Pistol pistol = new Pistol();
       Scope scope = new Scope(pistol);
-      e.addWeapon(scope,2,5);
+      e.addWeapon(scope, 2, 5);
 
       ChainGun chainGun = new ChainGun();
-      e.addWeapon(chainGun,2,5);
+      e.addWeapon(chainGun, 2, 5);
 
-      e.setLifeForm(2,5, null);
+      e.setLifeForm(2, 5, null);
 
       Alien alien1 = new Alien("Zorpo", 100, new RecoveryFractional(1));
       e.addLifeForm(alien1, 2, 3);
-      e.setLifeForm(2,3, alien1);
+      e.setLifeForm(2, 3, alien1);
 
       Alien alien2 = new Alien("Zeep", 100, new RecoveryFractional(1));
       e.addLifeForm(alien2, 2, 10);
-      e.setLifeForm(2,10, alien2);
+      e.setLifeForm(2, 10, alien2);
 
       Alien alien3 = new Alien("Zeep", 100, new RecoveryFractional(1));
       e.addLifeForm(alien3, 3, 8);
-      e.setLifeForm(3,8, alien3);
+      e.setLifeForm(3, 8, alien3);
 
     } catch (RecoveryRateException e) {
       // TODO Auto-generated catch block

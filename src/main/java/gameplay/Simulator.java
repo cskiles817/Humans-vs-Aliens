@@ -3,6 +3,7 @@ package gameplay;
 import environment.Environment;
 import exceptions.EnvironmentException;
 import exceptions.RecoveryRateException;
+import gui.Gui;
 import lifeform.Alien;
 import lifeform.Human;
 import lifeform.LifeForm;
@@ -15,8 +16,6 @@ import weapon.ChainGun;
 import weapon.Pistol;
 import weapon.PlasmaCannon;
 import weapon.Weapon;
-import gui.Gui;
-
 
 import java.util.Random;
 
@@ -33,6 +32,13 @@ public class Simulator implements TimerObserver {
   AiContext[] humanContexts;
   AiContext[] alienContexts;
 
+  /**
+   * Create a simulated version of the game
+   * @param e environment
+   * @param timer of the game
+   * @param numHumans on the game board
+   * @param numAliens on the game board
+   */
   public Simulator(Environment e, SimpleTimer timer, int numHumans, int numAliens) {
     env = e;
     Simulator.timer = timer;
@@ -44,7 +50,8 @@ public class Simulator implements TimerObserver {
     // add humans
     humanContexts = new AiContext[numHumans];
     for (int i = 0; i < numHumans; i++) {
-      humanContexts[i] = new AiContext(new Human(getRandHumanName(), defaultHumanLifePoints, getRandArmor()), env);
+      humanContexts[i] = new AiContext(new Human(getRandHumanName(),
+              defaultHumanLifePoints, getRandArmor()), env);
       timer.addTimeObserver(humanContexts[i]);
 //      addLifeForm(humanContexts[i].getLifeForm());
 //      addWeapon();
@@ -53,7 +60,8 @@ public class Simulator implements TimerObserver {
     //add aliens
     alienContexts = new AiContext[numAliens];
     for (int j = 0; j < numAliens; j++) {
-      alienContexts[j] = new AiContext(new Alien(getRandAlienName(), defaultAlienLifePoints, getRandRecovery()), env);
+      alienContexts[j] = new AiContext(new Alien(getRandAlienName(),
+              defaultAlienLifePoints, getRandRecovery()), env);
       timer.addTimeObserver(alienContexts[j]);
 //      addLifeForm(alienContexts[j].getLifeForm());
 //      addWeapon();
@@ -92,7 +100,7 @@ public class Simulator implements TimerObserver {
   }
 
   private static final Random r = new Random();
-  
+
   private static boolean canAddWeapon(int row, int col) {
     return env.getWeapons(row, col)[0] == null || env.getWeapons(row, col)[1] == null;
   }
@@ -112,7 +120,7 @@ public class Simulator implements TimerObserver {
     }
     return null;
   }
-  
+
   private static RecoveryBehavior getRandRecovery() {
     int choice = r.nextInt(3);
     switch (choice) {
@@ -128,7 +136,7 @@ public class Simulator implements TimerObserver {
     }
     return null;
   }
-  
+
   private static String getRandAlienName() {
     String[] alienNames = {
             "Zorvax", "Xylar", "Quorin", "Veltrix", "Nyxala",

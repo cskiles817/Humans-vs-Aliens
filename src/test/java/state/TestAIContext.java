@@ -11,18 +11,11 @@ import static org.junit.Assert.assertNotNull;
 
 public class TestAIContext {
 
-  private static final Environment e;
-
-  static {
-    try {
-      e = Environment.getEnvironment(12, 12);
-    } catch (EnvironmentException ex) {
-      throw new RuntimeException(ex);
-    }
-  }
+  private static Environment e;
 
   @Before
-  public void init() {
+  public void init() throws EnvironmentException {
+    e = Environment.getEnvironment(12, 12);
     e.clearBoard();
   }
 

@@ -31,6 +31,7 @@ public class Environment {
     notifyObservers(row, col, lf, getWeapons(row, col)[0], getWeapons(row, col)[1]);
   }
 
+
   /**
    * Adds a Lifeform to the cell
    *
@@ -325,5 +326,6 @@ public class Environment {
     ob[3] = randCol;
     return ob;
   }
+
 
 }

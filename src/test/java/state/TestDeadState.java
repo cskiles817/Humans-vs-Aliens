@@ -11,18 +11,12 @@ import static org.junit.Assert.assertEquals;
 
 public class TestDeadState {
 
-  private static final Environment e;
+  private static Environment e;
 
-  static {
-    try {
-      e = Environment.getEnvironment(12, 12);
-    } catch (EnvironmentException ex) {
-      throw new RuntimeException(ex);
-    }
-  }
 
   @Before
-  public void init() {
+  public void init() throws EnvironmentException {
+    e = Environment.getEnvironment(12, 12);
     e.clearBoard();
   }
 

@@ -14,8 +14,8 @@ public class NoWeaponState extends ActionState {
    * Constructor
    * @param context AI context
    */
-  NoWeaponState(AiContext context) {
-    super(context);
+  NoWeaponState(AiContext context, LifeForm lifeform, Environment environment) {
+    super(context, lifeform, environment);
   }
 
   /**

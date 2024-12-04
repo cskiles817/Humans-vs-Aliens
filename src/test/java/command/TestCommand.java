@@ -18,9 +18,11 @@ public class TestCommand {
   private LifeForm lifeForm;
   private Weapon chainGun;
 
+
   @Before
   public void setUp() throws EnvironmentException {
     environment = Environment.getEnvironment(5, 5);
+    environment.clearBoard();
     lifeForm = new LifeForm("Bob", 40);
     chainGun = new ChainGun();
     environment.addLifeForm(lifeForm, 0, 0);
@@ -103,8 +105,7 @@ public class TestCommand {
   }
 
   @Test
-  public void testAcquireWWinAvailableBAllEpd
-          () {
+  public void testAcquireWWinAvailableBAllEpd() {
     Weapon plasmaCannon = new PlasmaCannon();
     environment.addWeapon(plasmaCannon, 0, 2);
     lifeForm.pickUpWeapon(chainGun);

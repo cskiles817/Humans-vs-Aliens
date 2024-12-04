@@ -15,7 +15,7 @@ public abstract class ActionState {
    * Constructor
    * @param context AI Context
    */
-  ActionState(AiContext context) {
+  ActionState(AiContext context, LifeForm life, Environment env) {
     this.context = context;
     this.env = context.getEnvironment();
     this.life = context.getLifeForm();

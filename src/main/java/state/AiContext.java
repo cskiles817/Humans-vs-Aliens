@@ -11,11 +11,11 @@ public class AiContext implements TimerObserver {
 
   private LifeForm life;
   private Environment env;
-  private static ActionState currentState;
-  private final DeadState deadState = new DeadState(this);
-  private final HasWeaponState hasWeaponState = new HasWeaponState(this);
-  private final NoWeaponState noWeaponState = new NoWeaponState(this);
-  private final OutOfAmmoState outOfAmmoState = new OutOfAmmoState(this);
+  private ActionState currentState;
+  private DeadState deadState;
+  private HasWeaponState hasWeaponState;
+  private NoWeaponState noWeaponState;
+  private OutOfAmmoState outOfAmmoState;
 
   /**
    * Constructor
@@ -25,17 +25,25 @@ public class AiContext implements TimerObserver {
   public AiContext(LifeForm lf, Environment e) {
     this.life = lf;
     this.env = e;
-    if (lf.getCurrentLifePoints() == 0) {
-      currentState = deadState;
-    } else if (!lf.hasWeapon()) {
-      currentState = noWeaponState;
-    } else {
-      if (lf.getWeapon().getCurrentAmmo() == 0) {
-        currentState = outOfAmmoState;
-      } else {
-        currentState = hasWeaponState;
-      }
-    }
+
+    noWeaponState = new NoWeaponState(this, life, env);
+    hasWeaponState = new HasWeaponState(this, life, env);
+    outOfAmmoState = new OutOfAmmoState(this, life, env);
+    deadState = new DeadState(this, life, env);
+
+    currentState = noWeaponState;
+
+//    if (lf.getCurrentLifePoints() == 0) {
+//      currentState = deadState;
+//    } else if (!lf.hasWeapon()) {
+//      currentState = noWeaponState;
+//    } else {
+//      if (lf.getWeapon().getCurrentAmmo() == 0) {
+//        currentState = outOfAmmoState;
+//      } else {
+//        currentState = hasWeaponState;
+//      }
+//    }
   }
 
   /**

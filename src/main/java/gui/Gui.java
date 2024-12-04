@@ -62,6 +62,7 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
   static final int ROWS = 12;
   static final int COLS = 12;
 
+
   /**
    * Create GUI Interface to display game board
    *

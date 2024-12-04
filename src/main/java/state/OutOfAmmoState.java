@@ -1,5 +1,6 @@
 package state;
 
+import environment.Environment;
 import lifeform.LifeForm;
 
 /**
@@ -13,8 +14,8 @@ public class OutOfAmmoState extends ActionState {
    *
    * @param context AI context
    */
-  OutOfAmmoState(AiContext context) {
-    super(context);
+  OutOfAmmoState(AiContext context, LifeForm lifeform, Environment environment) {
+    super(context, lifeform, environment);
   }
 
   /**

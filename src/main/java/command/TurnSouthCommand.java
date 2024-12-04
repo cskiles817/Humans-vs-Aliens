@@ -9,7 +9,6 @@ public class TurnSouthCommand implements Command {
 
   public TurnSouthCommand(Environment env) {
     environment = env;
-
   }
 
   @Override

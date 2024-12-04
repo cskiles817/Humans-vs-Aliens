@@ -12,28 +12,21 @@ import static org.junit.Assert.assertNotNull;
 
 public class TestOutOfAmmoState {
 
-  private static final Environment e;
-
-  static {
-    try {
-      e = Environment.getEnvironment(12, 12);
-    } catch (EnvironmentException ex) {
-      throw new RuntimeException(ex);
-    }
-  }
+  private static Environment e;
 
   @Before
-  public void init() {
+  public void setUp() throws EnvironmentException {
+    e = Environment.getEnvironment(12, 12);
     e.clearBoard();
   }
 
   @Test
-  public void testInitialization() {
+  public void testInitialization(){
     MockLifeForm l = new MockLifeForm("Mock", 1);
     MockWeapon w = new MockWeapon();
     w.setCurrentAmmo(0);
     AiContext context = new AiContext(l, e);
-    OutOfAmmoState o = new OutOfAmmoState(context);
+    OutOfAmmoState o = new OutOfAmmoState(context, l, e);
     assertNotNull(o);
   }
 

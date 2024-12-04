@@ -11,23 +11,12 @@ import static org.junit.Assert.assertEquals;
 
 public class TestNoWeaponState {
 
-  private static final Environment e;
-
-  static {
-    try {
-      e = Environment.getEnvironment(12, 12);
-    } catch (EnvironmentException ex) {
-      throw new RuntimeException(ex);
-    }
-  }
-
-  @Before
-  public void init() {
-    e.clearBoard();
-  }
+  private static Environment e;
 
   @Test
-  public void testWeaponInCell() {
+  public void testWeaponInCell() throws EnvironmentException {
+    e = Environment.getEnvironment(12, 12);
+    e.clearBoard();
     MockLifeForm l = new MockLifeForm("Mock", 1);
     MockWeapon w = new MockWeapon();
     e.addWeapon(w, 1, 1);
@@ -39,7 +28,8 @@ public class TestNoWeaponState {
   }
 
   @Test
-  public void testNoWeaponInCell() {
+  public void testNoWeaponInCell() throws EnvironmentException {
+    e = Environment.getEnvironment(12, 12);
     MockLifeForm l = new MockLifeForm("Mock", 1);
     e.addLifeForm(l, 1, 1);
     AiContext context = new AiContext(l, e);
@@ -48,7 +38,8 @@ public class TestNoWeaponState {
   }
 
   @Test
-  public void testIfDead() {
+  public void testIfDead() throws EnvironmentException {
+    e = Environment.getEnvironment(12, 12);
     MockLifeForm l = new MockLifeForm("Mock", 1);
     e.addLifeForm(l, 1, 1);
     AiContext context = new AiContext(l, e);

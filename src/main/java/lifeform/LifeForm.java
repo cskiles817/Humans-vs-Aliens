@@ -9,7 +9,7 @@ import weapon.Weapon;
  */
 public class LifeForm {
   private String myName;
-  protected int currentLifePoints;
+  protected int currentLifePoints = 10;
 
   protected int maxLifePoints;
 
@@ -219,5 +219,9 @@ public class LifeForm {
 
   public void setMaxLifePoints(int maxLifePoints) {
     this.maxLifePoints = maxLifePoints;
+  }
+
+  public boolean isAlive() {
+    return currentLifePoints > 0;
   }
 }

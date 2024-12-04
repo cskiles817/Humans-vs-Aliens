@@ -17,8 +17,8 @@ public class DeadState extends ActionState {
    * Constructor
    * @param context
    */
-  DeadState(AiContext context) {
-    super(context);
+  DeadState(AiContext context, LifeForm lifeform, Environment environment) {
+    super(context, lifeform, environment);
   }
 
   /**

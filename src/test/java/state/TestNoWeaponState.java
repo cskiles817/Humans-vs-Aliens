@@ -13,10 +13,15 @@ public class TestNoWeaponState {
 
   private static Environment e;
 
-  @Test
-  public void testWeaponInCell() throws EnvironmentException {
+  @Before
+  public void setUp() throws EnvironmentException {
     e = Environment.getEnvironment(12, 12);
     e.clearBoard();
+  }
+
+  @Test
+  public void testWeaponInCell() throws EnvironmentException {
+
     MockLifeForm l = new MockLifeForm("Mock", 1);
     MockWeapon w = new MockWeapon();
     e.addWeapon(w, 1, 1);
@@ -29,7 +34,6 @@ public class TestNoWeaponState {
 
   @Test
   public void testNoWeaponInCell() throws EnvironmentException {
-    e = Environment.getEnvironment(12, 12);
     MockLifeForm l = new MockLifeForm("Mock", 1);
     e.addLifeForm(l, 1, 1);
     AiContext context = new AiContext(l, e);
@@ -39,7 +43,6 @@ public class TestNoWeaponState {
 
   @Test
   public void testIfDead() throws EnvironmentException {
-    e = Environment.getEnvironment(12, 12);
     MockLifeForm l = new MockLifeForm("Mock", 1);
     e.addLifeForm(l, 1, 1);
     AiContext context = new AiContext(l, e);

@@ -320,8 +320,8 @@ public class Environment {
    */
   public Object[] getRandomCell() {
     Object[] ob = new Object[4];
-    int randRow = (int) (Math.random() * 12);
-    int randCol = (int) (Math.random() * 12);
+    int randRow = (int) (Math.random() * 11);
+    int randCol = (int) (Math.random() * 11);
     int numWeapons = cells[randRow][randCol].getWeaponsCount();
     boolean hasLifeForm = (cells[randRow][randCol].getLifeForm() != null);
     ob[0] = hasLifeForm;

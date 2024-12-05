@@ -21,7 +21,7 @@ public class TestCommand {
 
   @Before
   public void setUp() throws EnvironmentException {
-    environment = Environment.getEnvironment(5, 5);
+    environment = Environment.getEnvironment(12, 12);
     environment.clearBoard();
     lifeForm = new LifeForm("Bob", 40);
     chainGun = new ChainGun();

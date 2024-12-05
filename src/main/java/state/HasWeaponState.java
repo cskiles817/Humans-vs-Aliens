@@ -24,8 +24,6 @@ public class HasWeaponState extends ActionState {
    */
   @Override
   public void executeAction() {
-    LifeForm l = context.getLifeForm();
-    Environment e = context.getEnvironment();
     if (l == null) {
       return;
     }
@@ -44,11 +42,9 @@ public class HasWeaponState extends ActionState {
    * Fire the weapon. If out of ammo move to Out of Ammo state
    */
   private void attackTarget() {
-    LifeForm l = context.getLifeForm();
-    Environment e = context.getEnvironment();
     AttackCommand a = new AttackCommand(e);
     a.execute();
-    if (l.getWeapon().getCurrentAmmo() == 0) {
+    if (l.getWeapon() != null && l.getWeapon().getCurrentAmmo() == 0) {
       context.setCurrentState(context.getOutOfAmmoState());
     }
   }
@@ -64,8 +60,6 @@ public class HasWeaponState extends ActionState {
    * Turn random, different direction and 50% of time move to new Cell.
    */
   private void search() {
-    LifeForm l = context.getLifeForm();
-    Environment e = context.getEnvironment();
     l.setRandomDirection();
     boolean move = ((int) (Math.random() * 2) == 0);
     if (move) {

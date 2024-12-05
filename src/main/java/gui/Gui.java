@@ -268,7 +268,7 @@ public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
 //    legendArray[14][1].setPreferredSize(labelDim);
 //    descr.add(legendArray[14][1]);
 
-    initializeEnvironment();
+    //initializeEnvironment();
 
     legend.add(icons, BorderLayout.LINE_START);
     legend.add(descr, BorderLayout.CENTER);

@@ -27,8 +27,6 @@ public class DeadState extends ActionState {
    */
   public void executeAction() {
     // Move weapon to random cell that has space
-    LifeForm l = context.getLifeForm();
-    Environment e = context.getEnvironment();
     if (l.hasWeapon()) {
       Weapon removed = l.dropWeapon();
       do {
@@ -48,7 +46,6 @@ public class DeadState extends ActionState {
    * Get a new random cell, and set variables accordingly
    */
   private void getNewCell() {
-    Environment e = context.getEnvironment();
     Object[] newCell = e.getRandomCell();
     hasLf = (boolean) newCell[0];
     numWeapons = (int) newCell[1];

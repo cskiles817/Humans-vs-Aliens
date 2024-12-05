@@ -25,7 +25,6 @@ public class OutOfAmmoState extends ActionState {
    */
   @Override
   public void executeAction() {
-    LifeForm l = context.getLifeForm();
     if (l.getCurrentLifePoints() > 0) {
       reload();
     } else {
@@ -44,7 +43,7 @@ public class OutOfAmmoState extends ActionState {
    * Reload the weapon, changes to Has Weapon state
    */
   private void reload() {
-    context.getLifeForm().getWeapon().reload();
+    l.getWeapon().reload();
     context.setCurrentState(context.getHasWeaponState());
   }
 }

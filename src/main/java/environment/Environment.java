@@ -214,10 +214,10 @@ public class Environment {
     switch (entity.getDirection()) {
       case "North":
         targetRow -= speed;
-        if (targetRow < 0) {
+        if (targetRow <= 0) {
           targetRow = 0;
         }
-        while (cells[targetRow][targetCol].isOccupied() && targetRow != row) {
+        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied() && targetRow != row) {
           targetRow++;
         }
         break;
@@ -226,7 +226,7 @@ public class Environment {
         if (targetRow > getNumRows() - 1) {
           targetRow = getNumRows() - 1;
         }
-        while (cells[targetRow][targetCol].isOccupied() && targetRow != row) {
+        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied() && targetRow != row) {
           targetRow--;
         }
         break;
@@ -235,17 +235,17 @@ public class Environment {
         if (targetCol > getNumCols() - 1) {
           targetCol = getNumCols() - 1;
         }
-        while (cells[targetRow][targetCol].isOccupied() && targetCol != col) {
+        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied() && targetCol != col) {
           targetCol++;
         }
 
         break;
       case "West":
         targetCol -= speed;
-        if (targetCol < 0) {
+        if (targetCol <= 0) {
           targetCol = 0;
         }
-        while (cells[targetRow][targetCol].isOccupied() && targetCol != col) {
+        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied() && targetCol != col) {
           targetCol--;
         }
         break;
@@ -327,5 +327,8 @@ public class Environment {
     return ob;
   }
 
+  boolean isValidCell(int row, int col) {
+    return (row >= 0 && row < cells.length && col >= 0 && col < cells[0].length);
+  }
 
 }

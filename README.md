@@ -2,6 +2,7 @@
 ## Group Members: Lucas Donovan and Connor Skiles
 
 ### Known issues:
+- Lifeforms moving improperly
 - Not all weapons appear right away on UI
 - Lifeforms stop moving when they land on a weapon
 - Lifeforms not attacking

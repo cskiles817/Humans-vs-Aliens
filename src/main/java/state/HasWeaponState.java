@@ -3,6 +3,8 @@ package state;
 import command.AttackCommand;
 import command.MoveCommand;
 import environment.Environment;
+import exceptions.EnvironmentException;
+import exceptions.WeaponException;
 import lifeform.LifeForm;
 
 /**

@@ -105,7 +105,11 @@ public class Environment {
   }
 
   public Weapon[] getWeapons(int row, int col) {
-    return new Weapon[]{cells[row][col].getWeapon1(), cells[row][col].getWeapon2()};
+    if (isValidCell(row, col)) {
+      return new Weapon[]{cells[row][col].getWeapon1(), cells[row][col].getWeapon2()};
+    } else {
+      return null;
+    }
   }
 
   /**

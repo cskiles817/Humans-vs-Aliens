@@ -27,7 +27,6 @@ public class Simulator implements TimerObserver {
   private AiContext[] humanContexts;
   private AiContext[] alienContexts;
 
-
   public static void main(String[] args) {
     try {
       Gui gui = new Gui();
@@ -44,8 +43,6 @@ public class Simulator implements TimerObserver {
       e.printStackTrace();
     }
   }
-
-
 
   public Simulator(Environment env, SimpleTimer timer, int numHumans, int numAliens) {
     this.environment = env;
@@ -73,13 +70,22 @@ public class Simulator implements TimerObserver {
 
   private void initializeAliens() {
     Random random = new Random();
+    RecoveryBehavior recovery;
     for (int i = 0; i < numAliens; i++) {
-      RecoveryBehavior recovery = switch (random.nextInt(3)) {
-        case 0 -> new RecoveryNone();
-        case 1 -> new RecoveryLinear(5);
-        case 2 -> new RecoveryFractional(0.5);
-        default -> throw new IllegalStateException("Unexpected value");
-      };
+      int choice = random.nextInt(3);
+      switch (choice) {
+        case 0:
+          recovery = new RecoveryNone();
+          break;
+        case 1:
+          recovery = new RecoveryLinear(5);
+          break;
+        case 2:
+          recovery = new RecoveryFractional(0.5);
+          break;
+        default:
+          throw new IllegalStateException("Unexpected value: " + choice);
+      }
       LifeForm alien = new Alien("Alien " + i, 10, recovery);
       placeLifeForm(alien);
       alienContexts[i] = new AiContext(alien, environment);
@@ -91,8 +97,8 @@ public class Simulator implements TimerObserver {
     Random random = new Random();
     int row, col;
     do {
-      row = random.nextInt(environment.getNumRows());
-      col = random.nextInt(environment.getNumCols());
+      row = random.nextInt(environment.getNumRows() - 1);
+      col = random.nextInt(environment.getNumCols() - 1);
     } while (environment.getLifeForm(row, col) != null);
     environment.addLifeForm(lifeForm, row, col);
   }
@@ -100,12 +106,21 @@ public class Simulator implements TimerObserver {
   private void placeWeapons() {
     Random random = new Random();
     for (int i = 0; i < numHumans + numAliens; i++) {
-      Weapon weapon = switch (random.nextInt(3)) {
-        case 0 -> new Pistol();
-        case 1 -> new ChainGun();
-        case 2 -> new PlasmaCannon();
-        default -> throw new IllegalStateException("Unexpected value");
-      };
+      Weapon weapon;
+      int choice = random.nextInt(3);
+      switch (choice) {
+        case 0:
+          weapon = new Pistol();
+          break;
+        case 1:
+          weapon = new ChainGun();
+          break;
+        case 2:
+          weapon = new PlasmaCannon();
+          break;
+        default:
+          throw new IllegalStateException("Unexpected value: " + choice);
+      }
       int row, col;
       do {
         row = random.nextInt(environment.getNumRows());
@@ -124,7 +139,6 @@ public class Simulator implements TimerObserver {
     for (AiContext c : alienContexts) {
       c.updateTime(time);
     }
-    System.out.println(timer.getRound());
+    System.out.println("\nRound " + timer.getRound());
   }
 }
-

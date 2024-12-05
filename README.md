@@ -2,7 +2,9 @@
 ## Group Members: Lucas Donovan and Connor Skiles
 
 ### Known issues:
-- Lifeforms not picking up weapons or attacking
+- Not all weapons appear right away on UI
+- Lifeforms stop moving when they land on a weapon
+- Lifeforms not attacking
 
 ### Is it acceptable for one or two team members to do more work than the others?
 Split the work equally to ensure everyone contributes to the final project.

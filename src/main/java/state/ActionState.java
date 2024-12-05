@@ -1,6 +1,8 @@
 package state;
 
 import environment.Environment;
+import exceptions.EnvironmentException;
+import exceptions.WeaponException;
 import lifeform.LifeForm;
 
 /**

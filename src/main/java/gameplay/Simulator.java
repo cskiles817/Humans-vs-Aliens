@@ -35,10 +35,10 @@ public class Simulator implements TimerObserver {
       env.addObserver(gui);
 
       SimpleTimer timer = new SimpleTimer(1000);
-
       Simulator simulator = new Simulator(env, timer, 10, 10);
       timer.addTimeObserver(simulator);
-      timer.start();
+
+      timer.run();
 
     } catch (RecoveryRateException | EnvironmentException e) {
       e.printStackTrace();

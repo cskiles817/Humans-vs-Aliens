@@ -25,8 +25,6 @@ public class NoWeaponState extends ActionState {
    */
   @Override
   public void executeAction() {
-    LifeForm l = context.getLifeForm();
-    Environment e = context.getEnvironment();
     if (l == null) {
       return;
     }
@@ -46,7 +44,6 @@ public class NoWeaponState extends ActionState {
    */
   private void acquireWeapon() {
     context.setCurrentState(context.getHasWeaponState());
-    Environment e = context.getEnvironment();
     AcquireCommand a = new AcquireCommand(e);
     a.execute();
   }
@@ -62,8 +59,6 @@ public class NoWeaponState extends ActionState {
    * Turn random direction and move to new Cell
    */
   private void search() {
-    LifeForm l = context.getLifeForm();
-    Environment e = context.getEnvironment();
     l.setRandomDirection();
     if (!e.moveLifeForm(l)) {
       search();

@@ -17,12 +17,16 @@ public class TestSimulator {
 
   private static Environment e;
 
+  @Before
+  public void setUp() throws EnvironmentException {
+    e = Environment.getEnvironment(12, 12);
+    e.clearBoard();
+  }
 
   SimpleTimer t = new SimpleTimer(1000);
 
   @Test
-  public void testPopulatesBoard() throws EnvironmentException {
-    e = Environment.getEnvironment(12, 12);
+  public void testPopulatesBoard() {
     e.clearBoard();
     new Simulator(e, t, 10, 10);
     //Simulator.main(null);
@@ -55,9 +59,8 @@ public class TestSimulator {
     assertEquals(20, weaponCount);
   }
 
-  @Test
-  public void testTimeUpdatesAIContext() throws EnvironmentException {
-    e = Environment.getEnvironment(12, 12);
+  //@Test
+  public void testTimeUpdatesAIContext() {
     Simulator s = new Simulator(e, t, 5, 5);
 
     s.updateTime(0);

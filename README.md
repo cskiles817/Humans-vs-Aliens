@@ -1,20 +1,5 @@
 # SWEN 200 Lab 7
-## Group Members: Lucas Donovan and Connor Skiles   
-### How to run
-#### Run GUI.java under src/main/java/GUI
-
-### TODO
-- ~~HasWeaponState~~
-- ~~DeadState~~
-- ~~NoWeaponState~~
-- ~~OutOfAmmoState~~
-- Updates to LifeForm (Code activity #1)
-- Expanded Figure 2 UML (Code activity #2)
-  - Just need to add Simulator
-    - Push to 'designs' folder
-- ~~AIContext~~
-- Simulator (Code Activity #3)
-- Checkstyle
+## Group Members: Lucas Donovan and Connor Skiles
 
 
 ### Is it acceptable for one or two team members to do more work than the others?

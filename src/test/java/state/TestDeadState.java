@@ -29,6 +29,7 @@ public class TestDeadState {
     l.pickUpWeapon(w);
     l.setCurrentLifePoints(0);
     AiContext context = new AiContext(l, e);
+    context.setCurrentState(context.getDeadState());
     context.execute();
     assertEquals(1, l.getCurrentLifePoints());
   }

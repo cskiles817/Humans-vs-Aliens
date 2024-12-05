@@ -8,8 +8,8 @@ import lifeform.LifeForm;
  */
 public abstract class ActionState {
   protected AiContext context;
-  protected Environment env;
-  protected LifeForm life;
+  protected Environment e;
+  protected LifeForm l;
 
   /**
    * Constructor
@@ -17,8 +17,8 @@ public abstract class ActionState {
    */
   ActionState(AiContext context, LifeForm life, Environment env) {
     this.context = context;
-    this.env = context.getEnvironment();
-    this.life = context.getLifeForm();
+    this.e = env;
+    this.l = life;
   }
 
   /**

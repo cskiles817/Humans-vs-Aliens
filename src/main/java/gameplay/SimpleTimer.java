@@ -64,10 +64,6 @@ public class SimpleTimer extends Thread implements Timer {
     for (int i = 0; i < obs.size(); i++) {
       obs.get(i).updateTime(round);
     }
-
-
-
-
   }
 
   /**
@@ -78,7 +74,7 @@ public class SimpleTimer extends Thread implements Timer {
     for (int x = 0; x < 100; x++) {
       try {
         Thread.sleep(sleepT);
-        round += 1;
+        timeChanged();
       } catch (InterruptedException e) {
         System.out.println("Something bad happened.");
       }

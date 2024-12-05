@@ -31,19 +31,19 @@ public class AiContext implements TimerObserver {
     outOfAmmoState = new OutOfAmmoState(this, life, env);
     deadState = new DeadState(this, life, env);
 
-    currentState = noWeaponState;
+    //currentState = noWeaponState;
 
-//    if (lf.getCurrentLifePoints() == 0) {
-//      currentState = deadState;
-//    } else if (!lf.hasWeapon()) {
-//      currentState = noWeaponState;
-//    } else {
-//      if (lf.getWeapon().getCurrentAmmo() == 0) {
-//        currentState = outOfAmmoState;
-//      } else {
-//        currentState = hasWeaponState;
-//      }
-//    }
+    if (lf.getCurrentLifePoints() == 0) {
+      currentState = deadState;
+    } else if (!lf.hasWeapon()) {
+      currentState = noWeaponState;
+    } else {
+      if (lf.getWeapon().getCurrentAmmo() == 0) {
+        currentState = outOfAmmoState;
+      } else {
+        currentState = hasWeaponState;
+      }
+    }
   }
 
   /**

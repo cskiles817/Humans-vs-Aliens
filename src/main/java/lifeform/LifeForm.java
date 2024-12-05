@@ -224,4 +224,9 @@ public class LifeForm {
   public boolean isAlive() {
     return currentLifePoints > 0;
   }
+
+  public void setCurrentLifePoints(int lp) {
+    currentLifePoints = lp;
+  }
+
 }

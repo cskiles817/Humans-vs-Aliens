@@ -12,17 +12,17 @@ import static org.junit.Assert.assertEquals;
 public class TestDeadState {
 
   private static Environment e;
-
+  private MockLifeForm l;
 
   @Before
   public void init() throws EnvironmentException {
     e = Environment.getEnvironment(12, 12);
     e.clearBoard();
+    l = new MockLifeForm("mock", 1);
   }
 
   @Test
   public void testWithWeapon() {
-    MockLifeForm l = new MockLifeForm("mock", 1);
     MockWeapon w = new MockWeapon();
     e.addLifeForm(l, 1, 1);
     e.addWeapon(w, 1, 1);

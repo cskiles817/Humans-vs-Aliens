@@ -38,7 +38,7 @@ public class DeadState extends ActionState {
     do {
       getNewCell();
     } while (hasLf);
-    //l.setMaxLifePoints(0); //FIX
+    l.setCurrentLifePoints(l.getMaxLifePoints());
     e.addLifeForm(l, row, col);
   }
 

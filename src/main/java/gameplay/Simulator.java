@@ -118,11 +118,11 @@ public class Simulator implements TimerObserver {
   @Override
   public void updateTime(int time) {
     // Called on each timer tick to allow human and alien AIContexts to act
-    for (AiContext context : humanContexts) {
-      context.updateTime(time);
+    for (AiContext c : humanContexts) {
+      c.updateTime(time);
     }
-    for (AiContext context : alienContexts) {
-      context.updateTime(time);
+    for (AiContext c : alienContexts) {
+      c.updateTime(time);
     }
     System.out.println(timer.getRound());
   }

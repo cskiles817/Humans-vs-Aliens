@@ -1,6 +1,8 @@
 # SWEN 200 Lab 7
 ## Group Members: Lucas Donovan and Connor Skiles
 
+### Known issues:
+- Lifeforms not picking up weapons or attacking
 
 ### Is it acceptable for one or two team members to do more work than the others?
 Split the work equally to ensure everyone contributes to the final project.

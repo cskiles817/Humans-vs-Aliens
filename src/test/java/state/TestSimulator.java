@@ -16,6 +16,10 @@ import static org.junit.Assert.assertEquals;
 public class TestSimulator {
 
   private static Environment e;
+  private SimpleTimer t = new SimpleTimer(1000);
+  private Simulator sim;
+
+
 
   @Before
   public void setUp() throws EnvironmentException {
@@ -23,13 +27,9 @@ public class TestSimulator {
     e.clearBoard();
   }
 
-  SimpleTimer t = new SimpleTimer(1000);
-
   @Test
   public void testPopulatesBoard() {
-    e.clearBoard();
-    new Simulator(e, t, 10, 10);
-    //Simulator.main(null);
+    sim = new Simulator(e, t, 10, 10);
     int humanCount = 0;
     int alienCount = 0;
     int weaponCount = 0;
@@ -59,11 +59,7 @@ public class TestSimulator {
     assertEquals(20, weaponCount);
   }
 
-  //@Test
-  public void testTimeUpdatesAIContext() {
-    Simulator s = new Simulator(e, t, 5, 5);
-
-    s.updateTime(0);
-
-  }
+//  @Test
+//  public void testTimeUpdatesAIContext() {
+//  }
 }

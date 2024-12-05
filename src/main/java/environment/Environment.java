@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Environment {
-  static Environment e;
+  private static Environment e;
 
   public static Cell[][] cells;
 
@@ -89,9 +89,9 @@ public class Environment {
       e = new Environment(row, col);
     }
 
-    if (row > cells.length || col > cells[0].length) {
-      throw new EnvironmentException("Row or Column Out of Bounds");
-    }
+//    if (row > cells.length || col > cells[0].length) {
+//      throw new EnvironmentException("Row or Column Out of Bounds");
+//    }
 
     return e;
   }

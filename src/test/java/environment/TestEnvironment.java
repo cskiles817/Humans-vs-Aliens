@@ -14,17 +14,16 @@ import static org.junit.Assert.*;
 public class TestEnvironment {
 
   private EnvironmentObserver observer;
+  private static Environment e;
 
   @Before
-  public void resetEnv() {
-    //reset the singleton
-    Environment.e = null;
+  public void resetEnv() throws EnvironmentException {
+    e = Environment.getEnvironment(12, 12);
+    e.clearBoard();
   }
 
   @Test
   public void testMove() throws EnvironmentException {
-    Environment e = Environment.getEnvironment(12, 12);
-    e.clearBoard();
 
     MockLifeForm l = new MockLifeForm("Mock", 1);
     MockLifeForm l2 = new MockLifeForm("Mock", 1);

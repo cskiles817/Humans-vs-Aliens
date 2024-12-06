@@ -89,10 +89,6 @@ public class Environment {
       e = new Environment(row, col);
     }
 
-//    if (row > cells.length || col > cells[0].length) {
-//      throw new EnvironmentException("Row or Column Out of Bounds");
-//    }
-
     return e;
   }
 
@@ -104,6 +100,11 @@ public class Environment {
     return cells.length;
   }
 
+  /**
+   * @param row of the weapon being acquired
+   * @param col of the weapon being acquired
+   * @return null if no weapon is in the cell
+   */
   public Weapon[] getWeapons(int row, int col) {
     if (isValidCell(row, col)) {
       return new Weapon[]{cells[row][col].getWeapon1(), cells[row][col].getWeapon2()};
@@ -221,7 +222,8 @@ public class Environment {
         if (targetRow <= 0) {
           targetRow = 0;
         }
-        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied() && targetRow != row) {
+        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied()
+                && targetRow != row) {
           targetRow++;
         }
         break;
@@ -230,7 +232,8 @@ public class Environment {
         if (targetRow > getNumRows() - 1) {
           targetRow = getNumRows() - 1;
         }
-        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied() && targetRow != row) {
+        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied()
+                && targetRow != row) {
           targetRow--;
         }
         break;
@@ -239,7 +242,8 @@ public class Environment {
         if (targetCol > getNumCols() - 1) {
           targetCol = getNumCols() - 1;
         }
-        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied() && targetCol != col) {
+        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied()
+                && targetCol != col) {
           targetCol++;
         }
 
@@ -249,7 +253,8 @@ public class Environment {
         if (targetCol <= 0) {
           targetCol = 0;
         }
-        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied() && targetCol != col) {
+        while (!isValidCell(targetRow, targetCol) || cells[targetRow][targetCol].isOccupied()
+                && targetCol != col) {
           targetCol--;
         }
         break;

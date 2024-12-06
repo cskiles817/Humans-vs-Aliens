@@ -27,6 +27,10 @@ public class Simulator implements TimerObserver {
   private AiContext[] humanContexts;
   private AiContext[] alienContexts;
 
+  /**
+   * Creates the GUI, and the SimpleTimer
+   * @param args arguments
+   */
   public static void main(String[] args) {
     try {
       Gui gui = new Gui();
@@ -44,6 +48,13 @@ public class Simulator implements TimerObserver {
     }
   }
 
+  /**
+   * This populates the environment and everything in the environment
+   * @param env environment
+   * @param timer game timer
+   * @param numHumans number of humans on the game board
+   * @param numAliens number of aliens on the game board
+   */
   public Simulator(Environment env, SimpleTimer timer, int numHumans, int numAliens) {
     this.environment = env;
     this.timer = timer;
@@ -95,7 +106,8 @@ public class Simulator implements TimerObserver {
 
   private void placeLifeForm(LifeForm lifeForm) {
     Random random = new Random();
-    int row, col;
+    int row;
+    int col;
     do {
       row = random.nextInt(environment.getNumRows() - 1);
       col = random.nextInt(environment.getNumCols() - 1);
@@ -121,7 +133,8 @@ public class Simulator implements TimerObserver {
         default:
           throw new IllegalStateException("Unexpected value: " + choice);
       }
-      int row, col;
+      int row;
+      int col;
       do {
         row = random.nextInt(environment.getNumRows());
         col = random.nextInt(environment.getNumCols());

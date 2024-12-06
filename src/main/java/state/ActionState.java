@@ -1,8 +1,6 @@
 package state;
 
 import environment.Environment;
-import exceptions.EnvironmentException;
-import exceptions.WeaponException;
 import lifeform.LifeForm;
 
 /**
@@ -10,8 +8,8 @@ import lifeform.LifeForm;
  */
 public abstract class ActionState {
   protected AiContext context;
-  protected Environment e;
-  protected LifeForm l;
+  protected Environment env;
+  protected LifeForm life;
 
   /**
    * Constructor
@@ -19,8 +17,8 @@ public abstract class ActionState {
    */
   ActionState(AiContext context, LifeForm life, Environment env) {
     this.context = context;
-    this.e = env;
-    this.l = life;
+    this.env = env;
+    this.life = life;
   }
 
   /**

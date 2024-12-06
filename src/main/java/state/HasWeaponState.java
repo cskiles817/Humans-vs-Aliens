@@ -3,8 +3,6 @@ package state;
 import command.AttackCommand;
 import command.MoveCommand;
 import environment.Environment;
-import exceptions.EnvironmentException;
-import exceptions.WeaponException;
 import lifeform.LifeForm;
 
 /**
@@ -26,11 +24,11 @@ public class HasWeaponState extends ActionState {
    */
   @Override
   public void executeAction() {
-    if (l == null) {
+    if (life == null) {
       return;
     }
-    if (l.getCurrentLifePoints() > 0) {
-      if (e.getTargetedByLifeForm(l) != null) {
+    if (life.getCurrentLifePoints() > 0) {
+      if (env.getTargetedByLifeForm(life) != null) {
         attackTarget();
       } else {
         search();
@@ -44,9 +42,9 @@ public class HasWeaponState extends ActionState {
    * Fire the weapon. If out of ammo move to Out of Ammo state
    */
   private void attackTarget() {
-    AttackCommand a = new AttackCommand(e);
+    AttackCommand a = new AttackCommand(env);
     a.execute();
-    if (l.getWeapon() != null && l.getWeapon().getCurrentAmmo() == 0) {
+    if (life.getWeapon() != null && life.getWeapon().getCurrentAmmo() == 0) {
       context.setCurrentState(context.getOutOfAmmoState());
     }
   }
@@ -62,10 +60,10 @@ public class HasWeaponState extends ActionState {
    * Turn random, different direction and 50% of time move to new Cell.
    */
   private void search() {
-    l.setRandomDirection();
+    life.setRandomDirection();
     boolean move = ((int) (Math.random() * 2) == 0);
     if (move) {
-      MoveCommand mv = new MoveCommand(e);
+      MoveCommand mv = new MoveCommand(env);
       mv.execute();
     }
   }

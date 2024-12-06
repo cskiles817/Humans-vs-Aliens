@@ -27,26 +27,26 @@ public class DeadState extends ActionState {
    */
   public void executeAction() {
     // Move weapon to random cell that has space
-    if (l.hasWeapon()) {
-      Weapon removed = l.dropWeapon();
+    if (life.hasWeapon()) {
+      Weapon removed = life.dropWeapon();
       do {
         getNewCell();
       } while (numWeapons == 2);
-      e.addWeapon(removed, row, col);
+      env.addWeapon(removed, row, col);
     }
     // Respawn
     do {
       getNewCell();
     } while (hasLf);
-    l.setCurrentLifePoints(l.getMaxLifePoints());
-    e.addLifeForm(l, row, col);
+    life.setCurrentLifePoints(life.getMaxLifePoints());
+    env.addLifeForm(life, row, col);
   }
 
   /**
    * Get a new random cell, and set variables accordingly
    */
   private void getNewCell() {
-    Object[] newCell = e.getRandomCell();
+    Object[] newCell = env.getRandomCell();
     hasLf = (boolean) newCell[0];
     numWeapons = (int) newCell[1];
     row = (int) newCell[2];
